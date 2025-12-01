@@ -15,7 +15,7 @@ export function TerminalWindow() {
         {/* Welcome Box */}
         <div className="inline-block rounded border border-primary px-4 py-2">
           <span className="text-primary">*</span>
-          <span className="ml-2 text-white">Welcome to Strix Agent</span>
+          <span className="ml-2 text-white">Welcome to Sonder</span>
         </div>
 
         {/* Command Prompt */}
