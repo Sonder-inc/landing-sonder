@@ -11,7 +11,7 @@ const DesktopPreview = () => {
       }}
     >
       {/* NOTE: The original menu bar is likely translucent. Added background to match visual design. */}
-      <div className="absolute left-0 top-0 flex h-9 w-full items-center bg-[#D4C5A9]/80 px-2 text-sm font-medium text-black backdrop-blur-sm">
+      <div className="absolute left-0 top-0 flex h-9 w-full items-center bg-[#D4C5A9]/50 px-2 text-sm font-medium text-black backdrop-blur-sm">
         <div className="flex items-center">
           <span className="px-3">
             <Image
