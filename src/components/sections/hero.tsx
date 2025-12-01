@@ -16,7 +16,7 @@ const Hero = () => {
 
   return (
     <section className="bg-background md:px-4 lg:px-8">
-      <div className="mx-auto max-w-7xl pt-12 pb-10 text-center max-md:px-6 md:pb-20">
+      <div className="mx-auto max-w-7xl pt-12 pb-0 text-center max-md:px-6">
         <div className="mb-8">
           {/* Intro pill button */}
           <a
