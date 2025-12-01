@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Copy, Check, ChevronDown } from "lucide-react";
 
 const Hero = () => {
@@ -9,7 +9,25 @@ const Hero = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedMode, setSelectedMode] = useState<"get-sonder" | "on-web">("on-web");
   const [urlInput, setUrlInput] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const installCommand = "curl -fsSL https://trysonder.ai/install.sh | bash";
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(installCommand);
@@ -48,12 +66,12 @@ const Hero = () => {
 
         {/* Install command interface */}
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-center overflow-hidden rounded-xl border border-border bg-card">
+          <div className="flex items-center rounded-xl border border-border bg-card">
             {/* Dropdown button */}
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary rounded-l-xl"
               >
                 <span>{selectedMode === "on-web" ? "On the web" : "Get Sonder"}</span>
                 <ChevronDown className="h-4 w-4 text-muted-foreground" />
@@ -61,7 +79,7 @@ const Hero = () => {
 
               {/* Dropdown menu */}
               {dropdownOpen && (
-                <div className="absolute left-0 top-full mt-1 z-10 min-w-[160px] rounded-lg border border-border bg-card shadow-lg">
+                <div className="absolute left-0 top-full mt-1 z-50 min-w-[160px] rounded-lg border border-border bg-card shadow-lg">
                   <button
                     onClick={() => handleModeSelect("get-sonder")}
                     className="w-full px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary rounded-t-lg"
@@ -104,7 +122,7 @@ const Hero = () => {
             {/* Action button - checkmark for URL, copy for command */}
             {selectedMode === "on-web" ? (
               <button
-                className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80"
+                className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl"
                 aria-label="Submit URL"
               >
                 <Check className="h-4 w-4" />
@@ -112,7 +130,7 @@ const Hero = () => {
             ) : (
               <button
                 onClick={handleCopy}
-                className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground"
+                className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground rounded-r-xl"
                 aria-label="Copy command"
               >
                 {copied ? (
