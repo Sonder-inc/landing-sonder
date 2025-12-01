@@ -82,7 +82,7 @@ const Hero = () => {
           </p>
 
           {/* Use Sonder toggle */}
-          <div className="mt-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="mt-24 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <span className="text-muted-foreground">Use Sonder where you work</span>
             <div className="flex items-center rounded-full border border-border bg-card p-1">
               <button
