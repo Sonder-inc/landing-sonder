@@ -22,7 +22,7 @@ const Hero = () => {
             href="#"
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
           >
-            <span>introducing wonder v0.1</span>
+            <span>introducing sonder v0.1</span>
             <span className="text-border">|</span>
             <span className="inline-flex items-center gap-1 text-foreground">
               Try it now <ArrowRight className="h-3.5 w-3.5" />
