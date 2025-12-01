@@ -4,7 +4,7 @@ import { TerminalWindow } from "./terminal-window";
 const DesktopPreview = () => {
   return (
     <div
-      className="relative h-[580px] select-none overflow-hidden bg-cover md:h-[650px] md:rounded-xl"
+      className="relative h-[480px] select-none overflow-hidden bg-cover bg-top md:h-[520px] md:rounded-xl"
       style={{
         backgroundImage:
           "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Generated-Image-December-01-2025-5_45PM-1764629164040.png?width=8000&height=8000&resize=contain')",
