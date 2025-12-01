@@ -5,6 +5,7 @@ import { ArrowRight, Copy, Check, ChevronDown } from "lucide-react";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<"terminal" | "ide" | "web">("terminal");
   const installCommand = "curl -fsSL https://trysonder.ai/install.sh | bash";
 
   const handleCopy = () => {
@@ -79,6 +80,43 @@ const Hero = () => {
               documentation
             </a>
           </p>
+
+          {/* Use Sonder toggle */}
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <span className="text-muted-foreground">Use Sonder where you work</span>
+            <div className="flex items-center rounded-full border border-border bg-card p-1">
+              <button
+                onClick={() => setActiveTab("terminal")}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  activeTab === "terminal"
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Terminal
+              </button>
+              <button
+                onClick={() => setActiveTab("ide")}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  activeTab === "ide"
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                IDE
+              </button>
+              <button
+                onClick={() => setActiveTab("web")}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  activeTab === "web"
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Web and iOS
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
