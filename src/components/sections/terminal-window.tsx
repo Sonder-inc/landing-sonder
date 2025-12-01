@@ -47,7 +47,7 @@ export function TerminalWindow() {
             <span className="text-white">);</span>
           </div>
           <div className="mt-3 pl-4">
-            <span className="text-[#c586c0]">if</span>
+            <span className="text-[#c586c0]">when</span>
             <span className="text-white"> (</span>
             <span className="text-[#9cdcfe]">access_granted</span>
             <span className="text-white">) {"{"}</span>
