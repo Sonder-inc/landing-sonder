@@ -22,31 +22,6 @@ const navLinks = [
 const AsideLogo = () => {
     return (
         <a href="/" className="flex items-center gap-2" aria-label="Sonder Home">
-            <svg
-                viewBox="0 0 26 26"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="-mt-0.5 h-6 w-auto md:h-7"
-            >
-                <circle cx="13" cy="13" r="13" fill="url(#paint0_radial_logo_nav)" />
-                <path
-                    d="M18.3305 20.5L13.3855 10.25H13.2755L8.33052 20.5H4.03052L12.0555 2.75H14.5955L22.6205 20.5H18.3305Z"
-                    fill="black"
-                />
-                <defs>
-                    <radialGradient
-                        id="paint0_radial_logo_nav"
-                        cx="0"
-                        cy="0"
-                        r="1"
-                        gradientUnits="userSpaceOnUse"
-                        gradientTransform="translate(13) rotate(90) scale(13)"
-                    >
-                        <stop stopColor="#10B981" />
-                        <stop offset="1" stopColor="#10B981" stopOpacity="0.6" />
-                    </radialGradient>
-                </defs>
-            </svg>
             <span className="text-xl font-bold text-white tracking-tight">Sonder</span>
         </a>
     );
