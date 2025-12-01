@@ -1,35 +1,84 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { ArrowRight, Copy, Check, ChevronDown } from "lucide-react";
 
 const Hero = () => {
+  const [copied, setCopied] = useState(false);
+  const installCommand = "curl -fsSL https://trysonder.ai/install.sh | bash";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(installCommand);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section className="bg-background md:px-4 lg:px-8">
       <div className="mx-auto max-w-7xl pt-12 pb-10 text-center max-md:px-6 md:pb-20">
         <div className="mb-8">
+          {/* Intro pill button */}
+          <a
+            href="#"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          >
+            <span>introducing wonder v0.1</span>
+            <span className="text-border">|</span>
+            <span className="inline-flex items-center gap-1 text-foreground">
+              Try it now <ArrowRight className="h-3.5 w-3.5" />
+            </span>
+          </a>
+
           <h1 className="mb-4 font-display text-[40px] font-[450] leading-none tracking-tight text-foreground lg:text-5xl">
-            Never stall on technical questions again.
+            Built to make you extraordinarily productive.
           </h1>
           <p className="mx-auto mb-2 max-w-xl text-lg text-muted-foreground">
-            When technical questions hit, Aside shows you the best answer in
-            under a second, pulled from past winning calls and your docs.
+            Sonder is the best way to hack with AI.
           </p>
-          <span className="mb-4 inline-flex items-center gap-1.5 font-display text-xs font-medium leading-none text-muted-foreground opacity-80">
-            Backed by
-            <Image
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/76e46daf-1e92-4ae7-a2aa-5014bf218bb7-asidehq-com/assets/svgs/y-combinator_ff4e4a4e-1.svg"
-              alt="Y Combinator"
-              width={85}
-              height={16}
-              className="h-4 w-auto"
-            />
-          </span>
         </div>
-        <div className="inline-flex items-center gap-3 max-md:flex-col md:gap-2">
-          <a
-            href="https://cal.com/team/aside/aside-demo"
-            className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-primary px-6 text-base font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-          >
-            <span>Book a demo</span>
-          </a>
+
+        {/* Install command interface */}
+        <div className="mx-auto max-w-2xl">
+          <div className="flex items-center overflow-hidden rounded-xl border border-border bg-card">
+            {/* Dropdown button */}
+            <button className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary">
+              <span>On the web</span>
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            </button>
+
+            {/* Command */}
+            <div className="flex flex-1 items-center px-4 font-mono text-sm">
+              <span className="text-orange-400">curl</span>
+              <span className="text-muted-foreground">&nbsp;-fsSL&nbsp;</span>
+              <span className="text-foreground">https://trysonder.ai/install.sh</span>
+              <span className="text-muted-foreground">&nbsp;|&nbsp;</span>
+              <span className="text-amber-500">bash</span>
+            </div>
+
+            {/* Copy button */}
+            <button
+              onClick={handleCopy}
+              className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="Copy command"
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-primary" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+
+          {/* Documentation link */}
+          <p className="mt-4 text-sm text-muted-foreground">
+            Or read the{" "}
+            <a
+              href="#"
+              className="underline underline-offset-2 transition-colors hover:text-foreground"
+            >
+              documentation
+            </a>
+          </p>
         </div>
       </div>
     </section>
