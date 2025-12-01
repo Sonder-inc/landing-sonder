@@ -82,7 +82,7 @@ const Hero = () => {
           </p>
 
           {/* Use Sonder toggle */}
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="mt-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <span className="text-muted-foreground">Use Sonder where you work</span>
             <div className="flex items-center rounded-full border border-border bg-card p-1">
               <button
@@ -94,16 +94,6 @@ const Hero = () => {
                 }`}
               >
                 Terminal
-              </button>
-              <button
-                onClick={() => setActiveTab("ide")}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  activeTab === "ide"
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                IDE
               </button>
               <button
                 onClick={() => setActiveTab("web")}
