@@ -104,7 +104,7 @@ const Hero = () => {
                   type="text"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
-                  placeholder="Enter URL..."
+                  placeholder="Enter your domain for a penetration test"
                   className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
                 />
               </div>
@@ -125,7 +125,7 @@ const Hero = () => {
                 className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl"
                 aria-label="Submit URL"
               >
-                <Check className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </button>
             ) : (
               <button
