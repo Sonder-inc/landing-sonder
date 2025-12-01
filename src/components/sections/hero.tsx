@@ -67,8 +67,8 @@ const Hero = () => {
         {/* Install command interface */}
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center rounded-xl border border-border bg-card">
-            {/* Dropdown button */}
-            <div className="relative" ref={dropdownRef}>
+            {/* Dropdown button - hidden on mobile */}
+            <div className="relative hidden md:block" ref={dropdownRef}>
               <button 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary rounded-l-xl"
@@ -109,8 +109,8 @@ const Hero = () => {
                 />
               </div>
             ) : (
-              // Command display for "Get Sonder"
-              <div className="flex flex-1 items-center px-4 font-mono text-sm">
+              // Command display for "Get Sonder" - only shown on desktop
+              <div className="hidden md:flex flex-1 items-center px-4 font-mono text-sm">
                 <span className="text-orange-400">curl</span>
                 <span className="text-muted-foreground">&nbsp;-fsSL&nbsp;</span>
                 <span className="text-foreground">https://trysonder.ai/install.sh</span>
@@ -119,10 +119,32 @@ const Hero = () => {
               </div>
             )}
 
-            {/* Action button - checkmark for URL, copy for command */}
+            {/* On mobile when "get-sonder" is selected, show URL input instead */}
+            {selectedMode === "get-sonder" && (
+              <div className="flex md:hidden flex-1 items-center px-4">
+                <input
+                  type="text"
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  placeholder="Enter your domain for a penetration test"
+                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                />
+              </div>
+            )}
+
+            {/* Action button - arrow on mobile, conditional on desktop */}
+            <button
+              onClick={selectedMode === "get-sonder" ? handleCopy : undefined}
+              className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl md:hidden"
+              aria-label="Submit URL"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+
+            {/* Desktop action buttons */}
             {selectedMode === "on-web" ? (
               <button
-                className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl"
+                className="hidden md:flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl"
                 aria-label="Submit URL"
               >
                 <ArrowRight className="h-4 w-4" />
@@ -130,7 +152,7 @@ const Hero = () => {
             ) : (
               <button
                 onClick={handleCopy}
-                className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground rounded-r-xl"
+                className="hidden md:flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground rounded-r-xl"
                 aria-label="Copy command"
               >
                 {copied ? (
