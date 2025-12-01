@@ -7,7 +7,7 @@ const DesktopPreview = () => {
       className="relative h-96 select-none overflow-hidden bg-cover md:rounded-xl"
       style={{
         backgroundImage:
-          "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/76e46daf-1e92-4ae7-a2aa-5014bf218bb7-asidehq-com/assets/images/wallpaper-15.jpg')",
+          "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Generated-Image-December-01-2025-5_45PM-1764629164040.png?width=8000&height=8000&resize=contain')",
       }}
     >
       {/* NOTE: The original menu bar is likely translucent. Added background to match visual design. */}
