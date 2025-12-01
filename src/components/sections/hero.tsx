@@ -6,12 +6,20 @@ import { ArrowRight, Copy, Check, ChevronDown } from "lucide-react";
 const Hero = () => {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<"terminal" | "ide" | "web">("terminal");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<"get-sonder" | "on-web">("on-web");
+  const [urlInput, setUrlInput] = useState("");
   const installCommand = "curl -fsSL https://trysonder.ai/install.sh | bash";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(installCommand);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleModeSelect = (mode: "get-sonder" | "on-web") => {
+    setSelectedMode(mode);
+    setDropdownOpen(false);
   };
 
   return (
@@ -42,32 +50,78 @@ const Hero = () => {
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center overflow-hidden rounded-xl border border-border bg-card">
             {/* Dropdown button */}
-            <button className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary">
-              <span>On the web</span>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
-            </button>
+            <div className="relative">
+              <button 
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex h-12 items-center gap-2 border-r border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+              >
+                <span>{selectedMode === "on-web" ? "On the web" : "Get Sonder"}</span>
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              </button>
 
-            {/* Command */}
-            <div className="flex flex-1 items-center px-4 font-mono text-sm">
-              <span className="text-orange-400">curl</span>
-              <span className="text-muted-foreground">&nbsp;-fsSL&nbsp;</span>
-              <span className="text-foreground">https://trysonder.ai/install.sh</span>
-              <span className="text-muted-foreground">&nbsp;|&nbsp;</span>
-              <span className="text-amber-500">bash</span>
+              {/* Dropdown menu */}
+              {dropdownOpen && (
+                <div className="absolute left-0 top-full mt-1 z-10 min-w-[160px] rounded-lg border border-border bg-card shadow-lg">
+                  <button
+                    onClick={() => handleModeSelect("get-sonder")}
+                    className="w-full px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary rounded-t-lg"
+                  >
+                    Get Sonder
+                  </button>
+                  <button
+                    onClick={() => handleModeSelect("on-web")}
+                    className="w-full px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary rounded-b-lg"
+                  >
+                    On the web
+                  </button>
+                </div>
+              )}
             </div>
 
-            {/* Copy button */}
-            <button
-              onClick={handleCopy}
-              className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="Copy command"
-            >
-              {copied ? (
-                <Check className="h-4 w-4 text-primary" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-            </button>
+            {/* Content area - switches based on selected mode */}
+            {selectedMode === "on-web" ? (
+              // URL input for "On the web"
+              <div className="flex flex-1 items-center px-4">
+                <input
+                  type="text"
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  placeholder="Enter URL..."
+                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                />
+              </div>
+            ) : (
+              // Command display for "Get Sonder"
+              <div className="flex flex-1 items-center px-4 font-mono text-sm">
+                <span className="text-orange-400">curl</span>
+                <span className="text-muted-foreground">&nbsp;-fsSL&nbsp;</span>
+                <span className="text-foreground">https://trysonder.ai/install.sh</span>
+                <span className="text-muted-foreground">&nbsp;|&nbsp;</span>
+                <span className="text-amber-500">bash</span>
+              </div>
+            )}
+
+            {/* Action button - checkmark for URL, copy for command */}
+            {selectedMode === "on-web" ? (
+              <button
+                className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80"
+                aria-label="Submit URL"
+              >
+                <Check className="h-4 w-4" />
+              </button>
+            ) : (
+              <button
+                onClick={handleCopy}
+                className="flex h-12 items-center justify-center px-4 text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Copy command"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4 text-primary" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </button>
+            )}
           </div>
 
           {/* Documentation link */}
