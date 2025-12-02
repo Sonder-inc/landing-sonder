@@ -22,7 +22,7 @@ const navLinks = [
 const AsideLogo = () => {
   return (
     <a href="/" className="flex items-center gap-2" aria-label="Sonder Home">
-            <span className="text-xl font-bold text-white tracking-tight">Sonder</span>
+            <span className="text-xl font-semibold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Sonder</span>
         </a>);
 
 };
