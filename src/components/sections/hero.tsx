@@ -47,11 +47,11 @@ const Hero = () => {
           {/* Intro pill button */}
           <a
             href="#"
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary group"
           >
             <span>introducing sonder v0.1</span>
             <span className="text-border">|</span>
-            <span className="inline-flex items-center gap-1 text-foreground">
+            <span className="inline-flex items-center gap-1 text-foreground transition-all duration-300 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
               Try it now <ArrowRight className="h-3.5 w-3.5" />
             </span>
           </a>
