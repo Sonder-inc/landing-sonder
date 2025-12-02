@@ -32,9 +32,11 @@ export default function Navigation() {
     <>
       <header className="fixed top-0 left-0 z-50 w-full border-b border-transparent bg-background px-6">
         <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-2">
-          <AsideLogo />
+          <div className="flex flex-1 items-center justify-start">
+            <AsideLogo />
+          </div>
           
-          <div className="hidden flex-grow gap-1 md:flex md:justify-center md:px-7">
+          <div className="hidden gap-1 md:flex md:justify-center">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -48,7 +50,7 @@ export default function Navigation() {
             ))}
           </div>
 
-          <div className="hidden items-center justify-end gap-1 md:flex">
+          <div className="hidden flex-1 items-center justify-end gap-1 md:flex">
              <a
               href="https://cal.com/team/aside/aside-demo"
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all bg-white text-black shadow-xs hover:bg-white/90 h-9 px-4 py-2"
