@@ -43,7 +43,7 @@ export default function Navigation() {
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 hover:bg-accent/50 hover:text-accent-foreground text-muted-foreground">
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 px-4 py-2 hover:bg-accent/50 hover:text-accent-foreground text-muted-foreground !w-[90px] !h-full">
 
                 {link.label}
               </a>
