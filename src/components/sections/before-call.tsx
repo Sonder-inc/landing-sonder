@@ -3,7 +3,7 @@ import { Linkedin, MoreHorizontal, ChevronDown, ArrowRight, Check, Link2 } from 
 
 const BeforeCallSection = () => {
   return (
-    <section className="container py-12 md:py-20 lg:pt-12 lg:pb-20">
+    <section id="prepare" className="container py-12 md:py-20 lg:pt-12 lg:pb-20">
       <div className="rounded-3xl border border-border-subtle">
         <div className="flex justify-between border-b border-border-subtle px-6 py-4 md:px-8">
           <span className="font-mono text-xs font-medium uppercase text-text-tertiary tracking-wider">[01] BEFORE THE CALL</span>
@@ -58,7 +58,7 @@ const BeforeCallSection = () => {
                 </a>
                 
                 <p className="mb-6 text-sm leading-relaxed text-text-secondary">
-                  Deal size is 100K. Team’s roughly 30–50 people. Chanhee is running this account — last time we ended up going deep on how Aside streamline their interview pipelines.
+                  Deal size is 100K. Team's roughly 30–50 people. Chanhee is running this account — last time we ended up going deep on how Aside streamline their interview pipelines.
                 </p>
                 
                 <div className="space-y-4">
