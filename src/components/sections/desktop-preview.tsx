@@ -67,7 +67,7 @@ const DesktopPreview = () => {
       </div>
 
       {/* Terminal Window floating in front */}
-      <div className="absolute left-1/2 top-14 z-20 -translate-x-1/2">
+      <div className="absolute inset-x-1 top-14 z-20 flex justify-center md:inset-x-auto md:left-1/2 md:block md:-translate-x-1/2">
         <TerminalWindow />
       </div>
     </div>
