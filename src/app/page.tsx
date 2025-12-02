@@ -14,7 +14,7 @@ export default function Home() {
       <Navigation />
       <main className="min-h-screen bg-background">
         <Hero />
-        <div className="container mx-auto max-w-7xl px-6 pb-12 md:pb-20">
+        <div className="mx-auto max-w-7xl px-0 pb-12 md:px-6 md:pb-20">
           <DesktopPreview />
         </div>
         <BeforeCallSection />
