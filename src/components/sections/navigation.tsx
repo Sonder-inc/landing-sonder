@@ -13,10 +13,10 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "/features", label: "Features" },
-  { href: "/enterprise", label: "Enterprise" },
-  { href: "/community", label: "Community" },
-  { href: "/resources", label: "Resources" },
+  { href: "#prepare", label: "Features", external: false },
+  { href: "#book-demo", label: "Enterprise", external: false },
+  { href: "https://discord.gg/3PpkxCGWeV", label: "Community", external: true },
+  { href: "https://github.com/Sonder-inc", label: "Resources", external: true },
 ];
 
 const AsideLogo = () => {
@@ -39,6 +39,8 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 hover:bg-accent/50 hover:text-accent-foreground text-muted-foreground"
               >
                 {link.label}
@@ -70,7 +72,12 @@ export default function Navigation() {
                 <div className="flex flex-col gap-4 p-6">
                   {navLinks.map((link) => (
                     <SheetClose asChild key={link.href}>
-                      <a href={link.href} className="text-lg font-medium text-muted-foreground hover:text-foreground">
+                      <a 
+                        href={link.href} 
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="text-lg font-medium text-muted-foreground hover:text-foreground"
+                      >
                         {link.label}
                       </a>
                     </SheetClose>
