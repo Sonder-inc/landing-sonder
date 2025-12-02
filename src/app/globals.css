@@ -2,6 +2,7 @@
 /* Updated: 2025-12-01T21:41:12.825Z */
 /* Updated: 2025-12-01T20:26:15.653Z */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
