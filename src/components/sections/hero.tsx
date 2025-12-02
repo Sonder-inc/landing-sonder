@@ -51,7 +51,7 @@ const Hero = () => {
           >
             <span>introducing sonder v0.1</span>
             <span className="text-border">|</span>
-            <span className="inline-flex items-center gap-1 text-foreground transition-all duration-300 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
+            <span className="inline-flex items-center gap-1 text-foreground transition-all duration-300 group-hover:text-cyan-400">
               Try it now <ArrowRight className="h-3.5 w-3.5" />
             </span>
           </a>
