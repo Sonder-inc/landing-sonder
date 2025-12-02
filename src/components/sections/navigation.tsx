@@ -36,7 +36,7 @@ export default function Navigation() {
             <AsideLogo />
           </div>
           
-          <div className="hidden gap-1 md:flex md:justify-center !w-2/5 !h-9">
+          <div className="hidden gap-1 md:flex md:justify-center !w-[396px] !h-9">
             {navLinks.map((link) =>
             <a
               key={link.href}
