@@ -1,7 +1,13 @@
-import Image from "next/image";
-import { TerminalWindow } from "./terminal-window";
+"use client";
 
-const DesktopPreview = () => {
+import Image from "next/image";
+import { TerminalWindow, WebAppWindow } from "./terminal-window";
+
+interface DesktopPreviewProps {
+  activeTab?: "terminal" | "web";
+}
+
+const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
   return (
     <div
       className="relative h-[480px] select-none overflow-hidden bg-cover bg-top md:h-[520px] md:rounded-xl"
@@ -66,9 +72,9 @@ const DesktopPreview = () => {
         </div>
       </div>
 
-      {/* Terminal Window floating in front */}
+      {/* Window floating in front */}
       <div className="absolute inset-x-1 top-14 z-20 flex justify-center md:inset-x-auto md:left-1/2 md:block md:-translate-x-1/2">
-        <TerminalWindow />
+        {activeTab === "terminal" ? <TerminalWindow /> : <WebAppWindow />}
       </div>
     </div>
   );

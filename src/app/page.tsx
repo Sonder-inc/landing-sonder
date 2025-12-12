@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Navigation from "@/components/sections/navigation";
 import Hero from "@/components/sections/hero";
 import DesktopPreview from "@/components/sections/desktop-preview";
@@ -9,13 +12,15 @@ import FinalCtaSection from "@/components/sections/final-cta";
 import Footer from "@/components/sections/footer";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<"terminal" | "web">("terminal");
+
   return (
     <>
       <Navigation />
       <main className="min-h-screen bg-background">
-        <Hero />
+        <Hero activeTab={activeTab} onTabChange={setActiveTab} />
         <div className="mx-auto max-w-7xl px-0 pb-12 md:px-6 md:pb-20">
-          <DesktopPreview />
+          <DesktopPreview activeTab={activeTab} />
         </div>
         <BeforeCallSection />
         <DuringCall />
