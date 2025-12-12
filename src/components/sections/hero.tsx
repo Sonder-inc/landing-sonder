@@ -46,7 +46,7 @@ const Hero = () => {
         <div className="mb-8">
           {/* Intro pill button */}
           <a
-            href="https://github.com/Sonder-inc/sonder"
+            href="#"
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary group"
           >
             <span>introducing sonder v0.1</span>

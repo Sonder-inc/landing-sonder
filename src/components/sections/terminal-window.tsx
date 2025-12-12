@@ -10,51 +10,57 @@ export function TerminalWindow() {
         <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
       </div>
 
-      {/* Content */}
-      <div className="space-y-4 p-6">
-        {/* Repository Dropdown */}
-        <div className="flex items-center gap-2 rounded border border-border bg-[#2a2a2a] px-3 py-2">
-          <span className="text-muted-foreground">🔗</span>
-          <span className="text-sm text-muted-foreground">your-org/your-app</span>
-          <span className="ml-auto text-muted-foreground">▼</span>
+      {/* Terminal Content */}
+      <div className="space-y-5 p-6">
+        {/* Welcome Box */}
+        <div className="inline-block rounded border border-primary px-4 py-2">
+          <span className="text-primary">*</span>
+          <span className="ml-2 text-white">Welcome to Sonder</span>
         </div>
 
-        {/* Model Dropdown */}
-        <div className="flex items-center gap-2 rounded border border-border bg-[#2a2a2a] px-3 py-2">
-          <span className="text-muted-foreground">💬</span>
-          <span className="text-sm text-muted-foreground">Opus 4.5</span>
-          <span className="ml-auto text-muted-foreground">▼</span>
+        {/* Command Prompt */}
+        <div className="flex items-center gap-2">
+          <span className="text-primary">&gt;</span>
+          <span className="font-semibold text-white">Scanning target...</span>
         </div>
 
-        {/* Action Cards */}
-        <div className="space-y-3 pt-2">
-          <div className="rounded-lg border border-border bg-[#252525] p-4 transition-colors hover:bg-[#2a2a2a]">
-            <div className="mb-1 flex items-center gap-2">
-              <span className="text-sm font-medium text-white">Audit the dependencies</span>
-              <span className="ml-auto rounded bg-primary/20 px-2 py-0.5 text-[10px] text-primary">deps</span>
-            </div>
-            <p className="text-xs leading-relaxed text-muted-foreground">
-              Analyze dependencies for outdated packages or security vulnerabilities
-            </p>
+        {/* Hacking-themed Code */}
+        <div className="space-y-1 pl-0 text-[13px] leading-relaxed">
+          <div>
+            <span className="text-[#c586c0]">while</span>
+            <span className="text-white">(</span>
+            <span className="text-[#9cdcfe]">vulnerable</span>
+            <span className="text-white">) {"{"}</span>
           </div>
-
-          <div className="rounded-lg border border-border bg-[#252525] p-4 transition-colors hover:bg-[#2a2a2a]">
-            <div className="mb-1 flex items-center gap-2">
-              <span className="text-sm font-medium text-white">Find performance issues</span>
-            </div>
-            <p className="text-xs leading-relaxed text-muted-foreground">
-              Analyze for performance anti-patterns and inefficiencies
-            </p>
+          <div className="pl-4">
+            <span className="text-[#dcdcaa]">probe_endpoint</span>
+            <span className="text-white">();</span>
           </div>
-
-          <div className="rounded-lg border border-border bg-[#252525] p-4 transition-colors hover:bg-[#2a2a2a]">
-            <div className="mb-1 flex items-center gap-2">
-              <span className="text-sm font-medium text-white">Fix a security issue</span>
-              <span className="ml-auto rounded bg-yellow-500/20 px-2 py-0.5 text-[10px] text-yellow-400">Security</span>
-            </div>
-            <p className="text-xs leading-relaxed text-muted-foreground">
-              Search for security issues and fix them
-            </p>
+          <div className="pl-4">
+            <span className="text-[#dcdcaa]">bypass_filters</span>
+            <span className="text-white">();</span>
+          </div>
+          <div className="pl-4">
+            <span className="text-[#dcdcaa]">exploit</span>
+            <span className="text-white">(</span>
+            <span className="text-[#ce9178]">weakness</span>
+            <span className="text-white">);</span>
+          </div>
+          <div className="mt-3 pl-4">
+            <span className="text-[#c586c0]">when</span>
+            <span className="text-white"> (</span>
+            <span className="text-[#9cdcfe]">access_granted</span>
+            <span className="text-white">) {"{"}</span>
+          </div>
+          <div className="pl-8">
+            <span className="text-[#dcdcaa]">report_finding</span>
+            <span className="text-white">();</span>
+          </div>
+          <div className="pl-4">
+            <span className="text-white">{"}"}</span>
+          </div>
+          <div>
+            <span className="text-white">{"}"}</span>
           </div>
         </div>
       </div>
