@@ -22,7 +22,7 @@ const FinalCtaSection = () => {
           </p>
           <div className="mt-5">
             <Link
-              href="https://cal.com/team/aside/aside-demo"
+              href="https://cal.com/trysonder"
               className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-primary px-6 text-base font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90"
             >
               Book a demo

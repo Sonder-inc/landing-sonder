@@ -52,7 +52,7 @@ export default function Navigation() {
 
           <div className="hidden flex-1 items-center justify-end gap-1 md:flex">
              <a
-              href="https://cal.com/team/aside/aside-demo"
+              href="https://cal.com/trysonder"
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all bg-white text-black shadow-xs hover:bg-white/90 h-9 px-4 py-2">
 
               <span>Book a demo</span>
@@ -87,7 +87,7 @@ export default function Navigation() {
                 </div>
                 <div className="absolute bottom-8 left-6 right-6">
                   <Button asChild className="w-full rounded-full bg-white h-12 text-base text-black hover:bg-white/90">
-                    <a href="https://cal.com/team/aside/aside-demo">
+                    <a href="https://cal.com/trysonder">
                       Book a demo
                     </a>
                   </Button>

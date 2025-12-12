@@ -57,8 +57,8 @@ const Hero = () => {
           </a>
 
           <h1 className="mb-4 font-display text-[40px] font-[450] leading-none tracking-tight text-foreground lg:text-5xl">
-            Built to make you extraordinarily productive.
-          </h1>
+              AI hackers to secure your apps
+            </h1>
           <p className="mx-auto mb-2 max-w-xl text-lg text-muted-foreground">
             Sonder is the best way to hack with AI.
           </p>
