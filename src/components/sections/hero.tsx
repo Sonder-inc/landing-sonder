@@ -44,6 +44,21 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
     setDropdownOpen(false);
   };
 
+  const handleUrlSubmit = () => {
+    if (urlInput.trim()) {
+      const url = encodeURIComponent(urlInput.trim());
+      window.location.href = `http://localhost:3001?url=${url}`;
+    } else {
+      window.location.href = "http://localhost:3001";
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleUrlSubmit();
+    }
+  };
+
   return (
     <section className="bg-background md:px-4 lg:px-8">
       <div className="mx-auto max-w-7xl pt-12 pb-6 text-center max-md:px-6">
@@ -107,6 +122,7 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
                   type="text"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="Enter your domain for a penetration test"
                   className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
                 />
@@ -127,6 +143,7 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
                   type="text"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="Enter your domain for a penetration test"
                   className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
                 />
@@ -134,7 +151,7 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
             )}
 
             <button
-              onClick={selectedMode === "get-sonder" ? handleCopy : undefined}
+              onClick={selectedMode === "get-sonder" ? handleCopy : handleUrlSubmit}
               className="flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl md:hidden"
               aria-label="Submit URL"
             >
@@ -143,7 +160,8 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
 
             {selectedMode === "on-web" ? (
               <button
-                className="hidden md:flex h-12 items-center justify-center px-4 text-primary transition-colors hover:text-primary/80 rounded-r-xl"
+                onClick={handleUrlSubmit}
+                className="hidden md:flex h-12 items-center justify-center px-4 text-[#4A9EFF] transition-colors hover:text-[#4A9EFF]/80 rounded-r-xl"
                 aria-label="Submit URL"
               >
                 <ArrowRight className="h-4 w-4" />

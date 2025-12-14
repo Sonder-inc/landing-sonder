@@ -15,15 +15,15 @@ const FinalCtaSection = () => {
       <div className="container relative z-10">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 px-6 text-center md:px-0">
           <h3 className="font-display text-4xl font-medium leading-tight tracking-tighter text-text-primary md:text-5xl">
-            Cut the ramp time, close more deals.
+            Finding bugs at terminal velocity
           </h3>
           <p className="max-w-xl text-lg text-muted-foreground">
-            See how Aside handles the hard parts and makes every rep sound like a pro.
+            Continuous pentesting that scales with your codebase. Ship fast, stay secure.
           </p>
           <div className="mt-5">
             <Link
               href="https://cal.com/trysonder"
-              className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-primary px-6 text-base font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90"
+              className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-[#4A9EFF] px-6 text-base font-medium text-white shadow-xs transition-colors hover:bg-[#4A9EFF]/90"
             >
               Book a demo
             </Link>

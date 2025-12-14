@@ -5,8 +5,8 @@ import Navigation from "@/components/sections/navigation";
 import Hero from "@/components/sections/hero";
 import DesktopPreview from "@/components/sections/desktop-preview";
 import BeforeCallSection from "@/components/sections/before-call";
-import DuringCall from "@/components/sections/during-call";
-import AfterCallSection from "@/components/sections/after-call";
+import DuringHack from "@/components/sections/during-call";
+import AfterHackSection from "@/components/sections/after-call";
 import SecuritySection from "@/components/sections/security";
 import FinalCtaSection from "@/components/sections/final-cta";
 import Footer from "@/components/sections/footer";
@@ -23,9 +23,9 @@ export default function Home() {
           <DesktopPreview activeTab={activeTab} />
         </div>
         <BeforeCallSection />
-        <DuringCall />
+        <DuringHack />
         <div className="container mx-auto max-w-7xl px-6 py-12 md:py-20">
-          <AfterCallSection />
+          <AfterHackSection />
         </div>
         <SecuritySection />
         <FinalCtaSection />

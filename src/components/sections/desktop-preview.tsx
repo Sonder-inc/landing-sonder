@@ -2,12 +2,37 @@
 
 import Image from "next/image";
 import { TerminalWindow, WebAppWindow } from "./terminal-window";
+import { useState, useEffect } from "react";
 
 interface DesktopPreviewProps {
   activeTab?: "terminal" | "web";
 }
 
 const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
+  const [currentTime, setCurrentTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      };
+      setCurrentTime(
+        now.toLocaleString("en-US", options).replace(",", "")
+      );
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       className="relative h-[480px] select-none overflow-hidden bg-cover bg-top md:h-[520px] md:rounded-xl"
@@ -68,7 +93,7 @@ const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
               height={18}
             />
           </span>
-          <span className="px-3">Sun Nov 30 11:58 AM</span>
+          <span className="px-3">{currentTime}</span>
         </div>
       </div>
 
