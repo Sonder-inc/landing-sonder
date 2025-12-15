@@ -13,6 +13,7 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedMode, setSelectedMode] = useState<"get-sonder" | "on-web">("on-web");
   const [urlInput, setUrlInput] = useState("");
+  const [urlError, setUrlError] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const installCommand = "curl -fsSL https://trysonder.ai/install.sh | bash";
 
@@ -44,12 +45,25 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
     setDropdownOpen(false);
   };
 
+  const isValidUrl = (urlString: string): boolean => {
+    try {
+      const url = new URL(urlString.startsWith('http') ? urlString : `https://${urlString}`);
+      return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+      return false;
+    }
+  };
+
   const handleUrlSubmit = () => {
     if (urlInput.trim()) {
+      if (!isValidUrl(urlInput.trim())) {
+        setUrlError(true);
+        return;
+      }
       const url = encodeURIComponent(urlInput.trim());
-      window.location.href = `http://localhost:3001?url=${url}`;
+      window.location.href = `https://app.trysonder.ai?url=${url}`;
     } else {
-      window.location.href = "http://localhost:3001";
+      window.location.href = "https://app.trysonder.ai";
     }
   };
 
@@ -85,7 +99,9 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
 
         {/* Install command interface */}
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-center rounded-xl border border-border bg-card">
+          <div className={`flex items-center rounded-xl border bg-card ${
+            urlError ? 'border-red-500' : 'border-border'
+          }`}>
             {/* Dropdown button - hidden on mobile */}
             <div className="relative hidden md:block" ref={dropdownRef}>
               <button 
@@ -121,10 +137,15 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
                 <input
                   type="text"
                   value={urlInput}
-                  onChange={(e) => setUrlInput(e.target.value)}
+                  onChange={(e) => {
+                    setUrlInput(e.target.value);
+                    setUrlError(false);
+                  }}
                   onKeyDown={handleKeyDown}
                   placeholder="Enter your domain for a penetration test"
-                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                  className={`flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground ${
+                    urlError ? 'text-red-500' : 'text-foreground'
+                  }`}
                 />
               </div>
             ) : (
@@ -142,10 +163,15 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
                 <input
                   type="text"
                   value={urlInput}
-                  onChange={(e) => setUrlInput(e.target.value)}
+                  onChange={(e) => {
+                    setUrlInput(e.target.value);
+                    setUrlError(false);
+                  }}
                   onKeyDown={handleKeyDown}
                   placeholder="Enter your domain for a penetration test"
-                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                  className={`flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground ${
+                    urlError ? 'text-red-500' : 'text-foreground'
+                  }`}
                 />
               </div>
             )}
@@ -180,6 +206,13 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
               </button>
             )}
           </div>
+
+          {/* Error message */}
+          {urlError && (
+            <p className="mt-2 text-sm text-red-500">
+              Please enter a valid URL (e.g., example.com or https://example.com)
+            </p>
+          )}
 
           {/* Documentation link */}
           <p className="mt-4 text-sm text-muted-foreground">
