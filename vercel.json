@@ -1,17 +1,9 @@
 {
-  "headers": [
+  "redirects": [
     {
       "source": "/install.sh",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "destination": "https://raw.githubusercontent.com/Sonder-inc/sonder/main/install.sh",
+      "statusCode": 302
     }
   ]
 }
