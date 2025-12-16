@@ -19,15 +19,15 @@ detect_platform() {
   ARCH="$(uname -m)"
 
   case "$OS" in
-    Linux*) OS="linux" ;;
+    Linux*)  OS="linux" ;;
     Darwin*) OS="darwin" ;;
-    *) echo "Unsupported OS: $OS"; exit 1 ;;
+    *)       echo "Unsupported OS: $OS"; exit 1 ;;
   esac
 
   case "$ARCH" in
-    x86_64) ARCH="x64" ;;
+    x86_64)  ARCH="x64" ;;
     aarch64|arm64) ARCH="arm64" ;;
-    *) echo "Unsupported arch: $ARCH"; exit 1 ;;
+    *)       echo "Unsupported arch: $ARCH"; exit 1 ;;
   esac
 
   PLATFORM="${OS}-${ARCH}"
@@ -35,10 +35,12 @@ detect_platform() {
 
 # Get latest release info (including prereleases)
 get_latest_release() {
+  # Try latest stable first, then fall back to any release (including prerelease)
   RELEASE_INFO=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" 2>/dev/null)
   VERSION=$(echo "$RELEASE_INFO" | grep '"tag_name"' | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
 
   if [ -z "$VERSION" ]; then
+    # Fall back to first release (could be prerelease)
     RELEASE_INFO=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases" 2>/dev/null)
     VERSION=$(echo "$RELEASE_INFO" | grep '"tag_name"' | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
   fi
@@ -48,6 +50,7 @@ get_latest_release() {
     exit 1
   fi
 
+  # Asset name: sonder-darwin-arm64.tar.gz
   ASSET_NAME="sonder-${PLATFORM}.tar.gz"
   DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/${ASSET_NAME}"
 }
@@ -57,6 +60,7 @@ download_with_progress() {
   local url=$1
   local output=$2
 
+  # Use curl with progress bar
   curl -#fSL "$url" -o "$output" 2>&1 | \
     stdbuf -oL tr '\r' '\n' | \
     grep -oE '[0-9]+\.[0-9]' | \
@@ -65,6 +69,7 @@ download_with_progress() {
         "$(printf '%*s' "${pct%.*}" '' | tr ' ' '█')" "$pct"
     done
 
+  # Fallback if progress didn't work
   if [ ! -f "$output" ]; then
     curl -fsSL "$url" -o "$output"
   fi
@@ -109,9 +114,9 @@ setup_path() {
     SHELL_NAME=$(basename "$SHELL")
     case "$SHELL_NAME" in
       bash) PROFILE="$HOME/.bashrc" ;;
-      zsh) PROFILE="$HOME/.zshrc" ;;
+      zsh)  PROFILE="$HOME/.zshrc" ;;
       fish) PROFILE="$HOME/.config/fish/config.fish" ;;
-      *) PROFILE="$HOME/.profile" ;;
+      *)    PROFILE="$HOME/.profile" ;;
     esac
 
     if [ -f "$PROFILE" ] && ! grep -q "sonder" "$PROFILE"; then
