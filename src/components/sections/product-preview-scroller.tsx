@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -34,7 +34,22 @@ export default function ProductPreviewScroller() {
   const [activeIdx, setActiveIdx] = useState(0);
   const { mode } = useLandingMode();
   const copy = landingCopy[mode];
-  const steps = copy.product.steps as Step[];
+  // In educate mode, filter out Slack and PM - learners won't use those features
+  const allSteps = copy.product.steps as Step[];
+  const steps = mode === "educate" 
+    ? allSteps.filter(s => s.id !== "slack" && s.id !== "pm")
+    : allSteps;
+
+  // Clamp activeIdx to valid range to prevent rendering issues during transitions
+  const safeActiveIdx = Math.min(Math.max(0, activeIdx), steps.length - 1);
+
+  // Reset active index when steps change to prevent out-of-bounds access
+  // Clamp to last valid index, not 0, so users can continue scrolling through
+  useEffect(() => {
+    if (activeIdx >= steps.length) {
+      setActiveIdx(steps.length - 1);
+    }
+  }, [steps.length, activeIdx]);
 
   useGSAP(
     () => {
@@ -83,7 +98,7 @@ export default function ProductPreviewScroller() {
     });
   };
 
-  const active = steps[activeIdx]!;
+  const active = steps[safeActiveIdx];
 
   return (
     <div ref={containerRef}>
@@ -115,7 +130,7 @@ export default function ProductPreviewScroller() {
                   <div className="mb-2 flex items-center gap-2">
                     <div className="flex items-center gap-1 rounded-full border border-border/60 bg-card/30 px-2 py-1">
                       {steps.map((s, idx) => {
-                        const isActive = idx === activeIdx;
+                        const isActive = idx === safeActiveIdx;
                         return (
                           <span
                             key={s.id}
@@ -132,7 +147,7 @@ export default function ProductPreviewScroller() {
 
                   <div className="space-y-1 font-mono text-xs tracking-widest text-muted-foreground/70">
                     {steps.map((s, idx) => {
-                      const isActive = idx === activeIdx;
+                      const isActive = idx === safeActiveIdx;
                       return (
                         <button
                           key={s.id}
