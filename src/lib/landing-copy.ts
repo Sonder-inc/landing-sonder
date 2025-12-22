@@ -47,11 +47,10 @@ export const landingCopy: Record<LandingMode, LandingCopy> = {
   execute: {
     hero: {
       introPill: "introducing sonder v0.1",
-      titlePrefix: "AI hacker agents\u00A0to",
-      subtitle1:
-        "The AI-powered security testing platform that finds vulnerabilities before attackers do.",
+      titlePrefix: "AI hackers\u00A0to",
+      subtitle1: "Move faster in the terminal. Keep control.",
       subtitle2:
-        "From web apps to APIs – delegate complete penetration tests without changing your workflow.",
+        "An AI terminal agent built for security workflows—quick iterations, fewer dead ends, and clean, repeatable output. Open source with BYOK support.",
     },
     trustedBy: { label: "Trusted by teams at" },
     product: {
@@ -146,11 +145,10 @@ export const landingCopy: Record<LandingMode, LandingCopy> = {
   educate: {
     hero: {
       introPill: "introducing sonder v0.1",
-      titlePrefix: "AI hacker agents\u00A0to",
-      subtitle1:
-        "An AI security mentor that explains what’s wrong, why it’s risky, and how to fix it—fast.",
+      titlePrefix: "AI hackers\u00A0to",
+      subtitle1: "Learn hacking in a real terminal—guided by an AI agent.",
       subtitle2:
-        "Turn every assessment into clear guidance your team can learn from and reuse.",
+        "Connects to pwn.college, TryHackMe, and Hack The Box to walk you through labs step-by-step. Open source. Bring your own API key, or use ours.",
     },
     trustedBy: { label: "Trusted by teams at" },
     product: {
