@@ -1,8 +1,15 @@
+"use client";
+
 import Link from 'next/link';
 import { URLS, ASSETS } from '@/lib/constants';
 import { Container } from '@/components/ui/section';
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 const FinalCtaSection = () => {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <section
       id="book-demo"
@@ -17,10 +24,10 @@ const FinalCtaSection = () => {
       <Container className="relative z-10">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
           <h3 className="font-display text-4xl font-medium leading-tight tracking-tighter text-text-primary md:text-5xl">
-            Finding bugs at terminal velocity
+            {copy.finalCta.headline}
           </h3>
           <p className="max-w-xl text-lg text-muted-foreground">
-            Continuous pentesting that scales with your codebase. Ship fast, stay secure.
+            {copy.finalCta.subhead}
           </p>
           <div className="mt-5">
             <Link

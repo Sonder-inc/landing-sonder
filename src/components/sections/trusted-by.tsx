@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/section";
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 // Company logos as SVG components for clean rendering
 const logos = [
@@ -97,6 +99,8 @@ const logos = [
 
 const TrustedBy = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -136,7 +140,7 @@ const TrustedBy = () => {
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-orange-500" />
               <span className="whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Trusted by teams at
+                {copy.trustedBy.label}
               </span>
             </div>
           </div>

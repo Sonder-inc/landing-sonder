@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import DesktopPreview from "@/components/sections/desktop-preview";
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -22,49 +24,6 @@ type Step = {
   description: string;
 };
 
-const steps: Step[] = [
-  {
-    id: "terminal",
-    number: "01",
-    label: "TERMINAL / IDE",
-    title: "Sonder at your fingertips",
-    description:
-      "Sonder embeds directly into your workflow. IDE, Web, CLI, Slack, Linear. Delegate tasks as they come to mind, wherever you are.",
-  },
-  {
-    id: "web",
-    number: "02",
-    label: "WEB BROWSER",
-    title: "Sonder in your browser",
-    description:
-      "Launch tests and review findings in a clean web UI with full traceability.",
-  },
-  {
-    id: "cli",
-    number: "03",
-    label: "COMMAND LINE",
-    title: "Sonder at scale",
-    description:
-      "Script and parallelize agents at massive scale for CI/CD, migrations, and maintenance.",
-  },
-  {
-    id: "slack",
-    number: "04",
-    label: "SLACK / TEAMS",
-    title: "Sonder in the war room",
-    description:
-      "Give support teams and engineers a shared line to Sonder. From incident triage to small bug fixes, anyone can delegate tasks in plain English.",
-  },
-  {
-    id: "pm",
-    number: "05",
-    label: "PROJECT MANAGER",
-    title: "Sonder in your backlog",
-    description:
-      "Automatically trigger agents from tickets and ship fixes while maintaining traceability from issue to code.",
-  },
-];
-
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
@@ -73,6 +32,9 @@ export default function ProductPreviewScroller() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+  const steps = copy.product.steps as Step[];
 
   useGSAP(
     () => {
@@ -133,21 +95,17 @@ export default function ProductPreviewScroller() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
             {/* Left column */}
             <div className="lg:pr-6 flex flex-col">
-              <div className="mb-6 flex items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-400" />
-                <span>PRODUCT</span>
-              </div>
-
               <h2 className="text-balance text-4xl font-medium leading-[1.05] tracking-[-0.02em] text-foreground md:text-5xl">
-                Sonder meets you
-                <br />
-                wherever you work.
+                {copy.product.heading.split("\n").map((line, idx) => (
+                  <span key={idx}>
+                    {line}
+                    {idx < copy.product.heading.split("\n").length - 1 ? <br /> : null}
+                  </span>
+                ))}
               </h2>
 
               <p className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-muted-foreground/80">
-                Embed agents into your workflow across terminal, web, and chat.
-                Keep momentum and delegate security work wherever it naturally
-                happens.
+                {copy.product.subheading}
               </p>
 
               {/* List + copy card */}

@@ -4,13 +4,16 @@ import { useState } from "react";
 import { ArrowRight, Copy, Check } from "lucide-react";
 import { URLS, INSTALL_COMMAND } from "@/lib/constants";
 import { Container } from "@/components/ui/section";
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
   const [selectedMode, setSelectedMode] = useState<"get-sonder" | "on-web">("on-web");
   const [urlInput, setUrlInput] = useState("");
   const [urlError, setUrlError] = useState(false);
-  const [heroMode, setHeroMode] = useState<"execute" | "educate">("execute");
+  const { mode, toggleMode } = useLandingMode();
+  const copy = landingCopy[mode];
 
   const handleCopy = () => {
     navigator.clipboard.writeText(INSTALL_COMMAND);
@@ -59,7 +62,7 @@ const Hero = () => {
                 href={URLS.GITHUB_REPO}
                 className="group mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary"
               >
-                <span>introducing sonder v0.1</span>
+                <span>{copy.hero.introPill}</span>
                 <span className="text-border">|</span>
                 <span className="inline-flex items-center gap-1 text-foreground transition-all duration-300 group-hover:text-cyan-400">
                   Try it now <ArrowRight className="h-3.5 w-3.5" />
@@ -67,20 +70,20 @@ const Hero = () => {
               </a>
 
               <h1 className="mb-6 text-[clamp(2.25rem,7.2vw,4.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
-                AI hacker agents{"\u00A0"}to
+                {copy.hero.titlePrefix}
                 <br />
                 {/* Big click target for the whole phrase (overlay button; baseline-aligned visuals) */}
                 <span className="relative inline-flex items-baseline gap-3 whitespace-nowrap leading-none sm:gap-4">
                   <button
                     type="button"
-                    onClick={() => setHeroMode((prev) => (prev === "execute" ? "educate" : "execute"))}
+                    onClick={toggleMode}
                     className="absolute -inset-x-3 inset-y-0 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
                     aria-label="Toggle between execute and educate"
                   />
 
                   <span
                     className={`relative z-10 pointer-events-none leading-none transition-colors duration-200 ${
-                      heroMode === "execute" ? "text-foreground" : "text-muted-foreground/40"
+                      mode === "execute" ? "text-foreground" : "text-muted-foreground/40"
                     }`}
                   >
                     execute
@@ -93,7 +96,7 @@ const Hero = () => {
                   >
                     <span
                       className={`absolute left-[0.1ex] top-1/2 h-[0.8ex] w-[0.8ex] -translate-y-1/2 rounded-full bg-neutral-200/80 shadow-[0_6px_18px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out ${
-                        heroMode === "educate" ? "translate-x-[1.2ex]" : "translate-x-0"
+                        mode === "educate" ? "translate-x-[1.2ex]" : "translate-x-0"
                       }`}
                     />
                     <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
@@ -101,7 +104,7 @@ const Hero = () => {
 
                   <span
                     className={`relative z-10 pointer-events-none leading-none transition-colors duration-200 ${
-                      heroMode === "educate" ? "text-foreground" : "text-muted-foreground/40"
+                      mode === "educate" ? "text-foreground" : "text-muted-foreground/40"
                     }`}
                   >
                     educate
@@ -109,10 +112,10 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="mb-2 max-w-lg text-base italic text-muted-foreground/80 leading-relaxed">
-                The AI-powered security testing platform that finds vulnerabilities before attackers do.
+                {copy.hero.subtitle1}
               </p>
               <p className="max-w-lg text-base italic text-muted-foreground/80 leading-relaxed">
-                From web apps to APIs – delegate complete penetration tests without changing your workflow.
+                {copy.hero.subtitle2}
               </p>
             </div>
 

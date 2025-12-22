@@ -2,6 +2,8 @@
 
 import { Users, FileText, KeyRound } from "lucide-react";
 import { Container } from "@/components/ui/section";
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 const securityFeatures = [
   {
@@ -80,6 +82,9 @@ const FeatureCard = ({ title, description, icon: Icon, bgIcon }: Feature) => (
 );
 
 const SecuritySection = () => {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <section className="relative bg-[#0a0a0a] py-24 lg:py-32">
       {/* Subtle noise texture overlay */}
@@ -94,10 +99,10 @@ const SecuritySection = () => {
         {/* Header */}
         <div className="mb-16 text-center lg:mb-20">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-white/40">
-            [04] Enterprise Ready
+            {copy.security.eyebrow}
           </p>
           <h3 className="font-display mx-auto max-w-4xl text-[28px] font-medium leading-[1.15] tracking-tight text-white sm:text-3xl lg:text-[40px]">
-            Built for teams that can&apos;t afford to compromise on security or compliance.
+            {copy.security.headline}
           </h3>
         </div>
 

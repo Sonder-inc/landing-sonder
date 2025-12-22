@@ -2,6 +2,8 @@
 
 import { Container } from "@/components/ui/section";
 import { MoveRight, KeyRound, Users, FileText } from "lucide-react";
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
 
 const enterpriseSecurity = [
   {
@@ -36,6 +38,9 @@ function SecurityFeature({ title, description, icon: Icon }: EnterpriseSecurityF
 }
 
 const EnterpriseSection = () => {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <section className="bg-black py-16 lg:py-24">
       <Container className="max-w-7xl">
@@ -61,11 +66,11 @@ const EnterpriseSection = () => {
               
               <div className="flex h-full flex-col justify-between">
                 <p className="max-w-[340px] text-[18px] leading-[1.6] tracking-tight text-black/80">
-                  Sonder is designed to meet the demands of modern enterprise teams — secure, scalable, and ready to integrate with your existing engineering tools.
+                  {copy.enterprise.intro}
                 </p>
                 
                 <h2 className="mt-16 max-w-[12ch] text-[clamp(40px,4.6vw,56px)] font-medium leading-[0.98] tracking-tight text-black">
-                  AI that will work with you, not replace you
+                  {copy.enterprise.headline}
                 </h2>
               </div>
             </div>

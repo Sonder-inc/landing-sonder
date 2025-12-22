@@ -1,5 +1,8 @@
 "use client";
 
+import { useLandingMode } from "@/lib/landing-mode";
+import { landingCopy } from "@/lib/landing-copy";
+
 const SONDER_LOGO = [
   '  ▄█▄  ',
   ' █████ ',
@@ -10,6 +13,9 @@ const SONDER_LOGO = [
 ];
 
 export function TerminalWindow() {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <div className="w-[560px] max-w-[90vw] overflow-hidden rounded-xl bg-[#1a1a1a] font-mono text-sm shadow-2xl">
       {/* Title Bar */}
@@ -30,7 +36,7 @@ export function TerminalWindow() {
         {/* Command Prompt */}
         <div className="flex items-center gap-2">
           <span className="text-primary">&gt;</span>
-          <span className="font-semibold text-white">Scanning target...</span>
+          <span className="font-semibold text-white">{copy.windows.terminal.statusLine}</span>
         </div>
 
         {/* Hacking-themed Code */}
@@ -78,6 +84,9 @@ export function TerminalWindow() {
 }
 
 export function WebAppWindow() {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#2d2d2d] font-sans text-sm shadow-2xl">
       {/* Title Bar */}
@@ -94,7 +103,7 @@ export function WebAppWindow() {
         <div className="w-[260px] border-r border-[#3a3a3a] bg-[#252525] p-4">
           {/* Input area */}
           <div className="mb-4 rounded-lg bg-[#1a1a1a] p-3">
-            <p className="text-xs text-gray-400">Find a security vulnerability and fix it</p>
+            <p className="text-xs text-gray-400">{copy.windows.web.prompt}</p>
             <div className="mt-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
               </div>
@@ -188,20 +197,20 @@ export function WebAppWindow() {
           {/* Task Cards */}
           <div className="w-full max-w-[280px] space-y-2">
             <div className="rounded-lg border border-[#3a3a3a] bg-[#252525] p-3">
-              <h4 className="text-xs font-medium text-white">Scan for XSS vulnerabilities</h4>
-              <p className="mt-1 text-[10px] text-gray-500">Analyze the codebase for cross-site scripting issues and recommend fixes</p>
+              <h4 className="text-xs font-medium text-white">{copy.windows.web.tasks[0]?.title}</h4>
+              <p className="mt-1 text-[10px] text-gray-500">{copy.windows.web.tasks[0]?.description}</p>
               <div className="mt-2 flex items-center justify-end gap-1">
                 <span className="rounded bg-[#4A9EFF]/20 px-1.5 py-0.5 text-[9px] text-[#4A9EFF]">XSS</span>
                 <span className="text-[9px] text-gray-500">3 found</span>
               </div>
             </div>
             <div className="rounded-lg border border-[#3a3a3a] bg-[#252525] p-3">
-              <h4 className="text-xs font-medium text-white">Check authentication flows</h4>
-              <p className="mt-1 text-[10px] text-gray-500">Review auth implementation for security vulnerabilities</p>
+              <h4 className="text-xs font-medium text-white">{copy.windows.web.tasks[1]?.title}</h4>
+              <p className="mt-1 text-[10px] text-gray-500">{copy.windows.web.tasks[1]?.description}</p>
             </div>
             <div className="rounded-lg border border-[#3a3a3a] bg-[#252525] p-3">
-              <h4 className="text-xs font-medium text-white">Audit API endpoints</h4>
-              <p className="mt-1 text-[10px] text-gray-500">Search for insecure endpoints and missing authorization</p>
+              <h4 className="text-xs font-medium text-white">{copy.windows.web.tasks[2]?.title}</h4>
+              <p className="mt-1 text-[10px] text-gray-500">{copy.windows.web.tasks[2]?.description}</p>
               <div className="mt-2 flex items-center justify-end gap-1">
                 <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-[9px] text-amber-400">Security</span>
                 <span className="text-[9px] text-gray-500">Scanning...</span>
@@ -264,6 +273,9 @@ export function CommandLineWindow() {
 }
 
 export function SlackWindow() {
+  const { mode } = useLandingMode();
+  const copy = landingCopy[mode];
+
   return (
     <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
       {/* Title Bar */}
@@ -285,14 +297,13 @@ export function SlackWindow() {
             <div className="rounded-xl bg-black/20 p-3">
               <div className="font-mono text-[11px] text-white/60">You</div>
               <div className="mt-1 font-mono text-[13px] text-white/80">
-                Run a quick scan on <span className="text-orange-300">api.sonder.dev</span> and file the top 3 issues.
-                <span className="text-orange-300"> @sonder</span>
+                {copy.windows.slack.userMessage}
               </div>
             </div>
             <div className="rounded-xl bg-black/20 p-3">
               <div className="font-mono text-[11px] text-white/60">sonder</div>
               <div className="mt-1 font-mono text-[13px] text-white/80">
-                On it. I’ll scan endpoints + auth flows and draft tickets with reproduction steps.
+                {copy.windows.slack.sonderMessage}
               </div>
             </div>
           </div>
