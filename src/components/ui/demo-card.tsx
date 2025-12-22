@@ -8,7 +8,7 @@ interface DemoCardProps {
 }
 
 const variantStyles = {
-  default: "rounded-[24px] bg-background-secondary p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)]",
+  default: "rounded-[24px] bg-card p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)]",
   terminal: "rounded-[24px] bg-black/80 shadow-[0_20px_40px_rgba(0,0,0,0.5)] font-mono text-sm overflow-hidden",
   gradient: "rounded-3xl bg-black/80 p-5 shadow-2xl",
 };

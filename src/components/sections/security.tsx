@@ -1,76 +1,132 @@
-import { Server, Users, FileText, KeyRound } from "lucide-react";
+"use client";
+
+import { Users, FileText, KeyRound } from "lucide-react";
+import { Container } from "@/components/ui/section";
 
 const securityFeatures = [
   {
     title: "Enterprise SSO",
     description: "SAML, OIDC, and OAuth out of the box. Plug into your existing identity provider.",
     icon: KeyRound,
-  },
-  {
-    title: "Air-gapped deployments",
-    description: "Run Sonder entirely on-prem. Your code never leaves your infrastructure.",
-    icon: Server,
+    // Custom background SVG for each feature
+    bgIcon: (
+      <svg viewBox="0 0 120 120" fill="none" className="h-full w-full">
+        <circle cx="60" cy="50" r="30" stroke="currentColor" strokeWidth="2" />
+        <path d="M60 80 L60 110" stroke="currentColor" strokeWidth="2" />
+        <rect x="50" y="100" width="20" height="15" rx="3" stroke="currentColor" strokeWidth="2" />
+        <circle cx="60" cy="45" r="8" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
   },
   {
     title: "Role-based access control",
     description: "Granular permissions for teams. Control who sees what, down to the finding.",
     icon: Users,
+    bgIcon: (
+      <svg viewBox="0 0 120 120" fill="none" className="h-full w-full">
+        <circle cx="60" cy="35" r="15" stroke="currentColor" strokeWidth="2" />
+        <path d="M35 95 C35 70 45 55 60 55 C75 55 85 70 85 95" stroke="currentColor" strokeWidth="2" />
+        <circle cx="30" cy="50" r="10" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+        <path d="M15 90 C15 72 22 62 30 62" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+        <circle cx="90" cy="50" r="10" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+        <path d="M105 90 C105 72 98 62 90 62" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+      </svg>
+    ),
   },
   {
     title: "Complete audit logs",
     description: "Every scan, every finding, every action—logged and exportable for compliance.",
     icon: FileText,
+    bgIcon: (
+      <svg viewBox="0 0 120 120" fill="none" className="h-full w-full">
+        <path d="M30 15 L30 105 L90 105 L90 35 L70 15 L30 15Z" stroke="currentColor" strokeWidth="2" />
+        <path d="M70 15 L70 35 L90 35" stroke="currentColor" strokeWidth="2" />
+        <line x1="40" y1="50" x2="80" y2="50" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="40" y1="62" x2="75" y2="62" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="40" y1="74" x2="80" y2="74" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="40" y1="86" x2="65" y2="86" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
   },
 ];
 
 type Feature = (typeof securityFeatures)[0];
 
-const FeatureCard = ({ title, description, icon: Icon }: Feature) => (
-  <>
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5">
-      <Icon className="h-32 w-32" />
+const FeatureCard = ({ title, description, icon: Icon, bgIcon }: Feature) => (
+  <div className="group relative h-full p-8 lg:p-10">
+    {/* Large background icon */}
+    <div className="pointer-events-none absolute right-4 top-1/2 h-32 w-32 -translate-y-1/2 text-white/[0.04] transition-all duration-500 group-hover:text-white/[0.08] lg:right-8 lg:h-40 lg:w-40">
+      {bgIcon}
     </div>
-    <div className="relative">
-      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10">
-        <Icon className="h-5 w-5 text-white" />
+
+    {/* Content */}
+    <div className="relative z-10">
+      {/* Icon container */}
+      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
+        <Icon className="h-5 w-5 text-white/90" strokeWidth={1.5} />
       </div>
-      <h5 className="mb-2 text-lg font-medium text-white">{title}</h5>
-      <p className="max-w-xs text-muted-foreground">{description}</p>
+
+      {/* Title */}
+      <h4 className="mb-2.5 text-lg font-medium tracking-tight text-white">
+        {title}
+      </h4>
+
+      {/* Description */}
+      <p className="text-[15px] leading-relaxed text-white/50">
+        {description}
+      </p>
     </div>
-  </>
+  </div>
 );
 
 const SecuritySection = () => {
   return (
-    <section
-      className="relative bg-black py-20 lg:py-32"
-      style={{
-        backgroundImage:
-          "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/76e46daf-1e92-4ae7-a2aa-5014bf218bb7-asidehq-com/assets/images/bg-pattern-dot-16.svg')",
-      }}
-    >
-      <div className="container mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mb-16 text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/50">[04] Enterprise Ready</p>
-          <h3 className="font-display mx-auto max-w-4xl text-3xl font-medium tracking-tight text-white lg:text-4xl">
+    <section className="relative bg-[#0a0a0a] py-24 lg:py-32">
+      {/* Subtle noise texture overlay */}
+      <div 
+        className="pointer-events-none absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <Container>
+        {/* Header */}
+        <div className="mb-16 text-center lg:mb-20">
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+            [04] Enterprise Ready
+          </p>
+          <h3 className="font-display mx-auto max-w-4xl text-[28px] font-medium leading-[1.15] tracking-tight text-white sm:text-3xl lg:text-[40px]">
             Built for teams that can&apos;t afford to compromise on security or compliance.
           </h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative overflow-hidden border-b border-border p-8 md:border-r lg:p-12">
-            <FeatureCard {...securityFeatures[0]} />
+
+        {/* Feature Grid */}
+        <div className="relative mx-auto max-w-5xl">
+          {/* Grid container with border */}
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.01]">
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              <div className="relative border-b border-white/[0.08] md:border-b-0 md:border-r">
+                <FeatureCard {...securityFeatures[0]} />
+              </div>
+              <div className="relative border-b border-white/[0.08] md:border-b-0 md:border-r">
+                <FeatureCard {...securityFeatures[1]} />
+              </div>
+              <div className="relative">
+                <FeatureCard {...securityFeatures[2]} />
+              </div>
+            </div>
           </div>
-          <div className="relative overflow-hidden border-b border-border p-8 lg:p-12">
-            <FeatureCard {...securityFeatures[1]} />
+
+          {/* Center accents */}
+          <div className="pointer-events-none absolute left-1/3 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+            <div className="h-2 w-2 rounded-full bg-white/10" />
           </div>
-          <div className="relative overflow-hidden border-b border-border p-8 md:border-b-0 md:border-r lg:p-12">
-            <FeatureCard {...securityFeatures[2]} />
-          </div>
-          <div className="relative overflow-hidden p-8 lg:p-12">
-            <FeatureCard {...securityFeatures[3]} />
+          <div className="pointer-events-none absolute left-2/3 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+            <div className="h-2 w-2 rounded-full bg-white/10" />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

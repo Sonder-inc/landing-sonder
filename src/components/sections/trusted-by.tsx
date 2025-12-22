@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Container } from "@/components/ui/section";
 
 // Company logos as SVG components for clean rendering
 const logos = [
@@ -128,7 +129,7 @@ const TrustedBy = () => {
 
   return (
     <section className="bg-background py-8 md:py-12">
-      <div className="mx-auto max-w-7xl">
+      <Container>
         <div className="flex items-center">
           {/* Left side - Label */}
           <div className="flex-shrink-0 px-6">
@@ -166,7 +167,7 @@ const TrustedBy = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

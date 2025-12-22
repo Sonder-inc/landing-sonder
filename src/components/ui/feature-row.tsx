@@ -22,7 +22,14 @@ export function FeatureRow({
   className,
 }: FeatureRowProps) {
   const contentBlock = (
-    <div className="flex flex-col justify-between p-6 md:p-8 lg:p-12">
+    <div
+      className={cn(
+        "flex flex-col p-6 md:p-8 lg:p-12",
+        visualLeft
+          ? "justify-start pt-10 md:border-l md:border-border-subtle md:pt-10 lg:pt-12"
+          : "justify-between"
+      )}
+    >
       <div>
         <p className="mb-4 text-7xl font-light text-text-tertiary/50">{number}</p>
         <h3 className="mb-4 font-display text-2xl font-medium leading-tight tracking-tight text-white lg:text-[28px]">
@@ -58,17 +65,7 @@ export function FeatureRow({
       {visualLeft ? (
         <>
           {visualBlock}
-          <div className="flex flex-col justify-start p-6 pt-10 md:border-l md:border-border-subtle md:p-8 md:pt-10 lg:p-12 lg:pt-12">
-            <div>
-              <p className="mb-4 text-7xl font-light text-text-tertiary/50">{number}</p>
-              <h3 className="mb-4 font-display text-2xl font-medium leading-tight tracking-tight text-white lg:text-[28px]">
-                {title}
-              </h3>
-              <p className="max-w-sm text-base text-text-secondary lg:text-lg">
-                {description}
-              </p>
-            </div>
-          </div>
+          {contentBlock}
         </>
       ) : (
         <>

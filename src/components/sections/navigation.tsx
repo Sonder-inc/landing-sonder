@@ -58,8 +58,7 @@ const Wordmark = () => {
     <a
       href="/"
       aria-label="Sonder Home"
-      className="text-[18px] font-semibold tracking-tight text-white"
-      style={{ fontFamily: "'Playfair Display', serif" }}
+      className="font-display-serif text-[18px] font-semibold tracking-tight text-white"
     >
       Sonder
     </a>
@@ -74,8 +73,7 @@ function ProductMegaMenu() {
       <HoverCardTrigger asChild>
         <button
           type="button"
-          className="group flex items-center gap-1 text-[13px] font-medium tracking-wide transition-colors"
-          style={{ fontFamily: "var(--font-mono)" }}
+          className="font-mono-nav group flex items-center gap-1 text-[13px] font-medium tracking-wide transition-colors"
         >
           <span className={open ? "text-white" : "text-[#8a8a8a] group-hover:text-white"}>
             PRODUCT
@@ -141,8 +139,7 @@ export default function Navigation() {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
-                  className="group flex items-center gap-1 text-[13px] font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
-                  style={{ fontFamily: "var(--font-mono)" }}
+                  className="font-mono-nav group flex items-center gap-1 text-[13px] font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
                 >
                   {link.label}
                 </a>
@@ -152,15 +149,13 @@ export default function Navigation() {
             <div className="flex items-center gap-3">
               <Button
                 asChild
-                className="h-9 rounded-sm border border-white/20 bg-[#f5f5f5] px-5 text-[13px] font-medium tracking-wide text-black hover:bg-white"
-                style={{ fontFamily: "var(--font-mono)" }}
+                className="font-mono-nav h-9 rounded-sm border border-white/20 bg-[#f5f5f5] px-5 text-[13px] font-medium tracking-wide text-black hover:bg-white"
               >
                 <a href={URLS.APP}>LOG IN</a>
               </Button>
               <Button
                 asChild
-                className="h-9 rounded-sm border border-white/20 bg-[#1a1a1a] px-5 text-[13px] font-medium tracking-wide text-white hover:bg-[#252525]"
-                style={{ fontFamily: "var(--font-mono)" }}
+                className="font-mono-nav h-9 rounded-sm border border-white/20 bg-[#1a1a1a] px-5 text-[13px] font-medium tracking-wide text-white hover:bg-[#252525]"
               >
                 <a href={URLS.BOOK_DEMO}>CONTACT SALES</a>
               </Button>
@@ -191,8 +186,7 @@ export default function Navigation() {
                   <SheetClose asChild>
                     <a
                       href="#features"
-                      className="flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
-                      style={{ fontFamily: "var(--font-mono)" }}
+                      className="font-mono-nav flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
                     >
                       PRODUCT <ChevronRight className="h-3 w-3" />
                     </a>
@@ -203,8 +197,7 @@ export default function Navigation() {
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
-                        style={{ fontFamily: "var(--font-mono)" }}
+                        className="font-mono-nav flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
                       >
                         {link.label}
                       </a>
@@ -215,15 +208,13 @@ export default function Navigation() {
                   <Button
                     asChild
                     variant="outline"
-                    className="h-11 w-full border-white/20 bg-transparent text-sm font-medium tracking-wide text-white hover:bg-white/10"
-                    style={{ fontFamily: "var(--font-mono)" }}
+                    className="font-mono-nav h-11 w-full border-white/20 bg-transparent text-sm font-medium tracking-wide text-white hover:bg-white/10"
                   >
                     <a href={URLS.APP}>LOG IN</a>
                   </Button>
                   <Button
                     asChild
-                    className="h-11 w-full bg-[#1a1a1a] text-sm font-medium tracking-wide text-white hover:bg-[#252525] border border-white/20"
-                    style={{ fontFamily: "var(--font-mono)" }}
+                    className="font-mono-nav h-11 w-full bg-[#1a1a1a] text-sm font-medium tracking-wide text-white hover:bg-[#252525] border border-white/20"
                   >
                     <a href={URLS.BOOK_DEMO}>CONTACT SALES</a>
                   </Button>

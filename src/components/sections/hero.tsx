@@ -3,13 +3,9 @@
 import { useState } from "react";
 import { ArrowRight, Copy, Check } from "lucide-react";
 import { URLS, INSTALL_COMMAND } from "@/lib/constants";
+import { Container } from "@/components/ui/section";
 
-interface HeroProps {
-  activeTab: "terminal" | "web";
-  onTabChange: (tab: "terminal" | "web") => void;
-}
-
-const Hero = ({ activeTab, onTabChange }: HeroProps) => {
+const Hero = () => {
   const [copied, setCopied] = useState(false);
   const [selectedMode, setSelectedMode] = useState<"get-sonder" | "on-web">("on-web");
   const [urlInput, setUrlInput] = useState("");
@@ -51,8 +47,8 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
   };
 
   return (
-    <section className="bg-background md:px-4 lg:px-8">
-      <div className="mx-auto max-w-7xl pb-6 pt-12 max-md:px-6">
+    <section className="bg-background">
+      <Container className="pb-6 pt-12">
         {/* Two-column hero layout */}
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* Left column - Content */}
@@ -70,11 +66,11 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
                 </span>
               </a>
 
-              <h1 className="mb-6 text-[clamp(2.5rem,8vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
-                AI hacker agents to
+              <h1 className="mb-6 text-[clamp(2.25rem,7.2vw,4.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
+                AI hacker agents{"\u00A0"}to
                 <br />
                 {/* Big click target for the whole phrase (overlay button; baseline-aligned visuals) */}
-                <span className="relative inline-flex items-baseline gap-4 whitespace-nowrap leading-none">
+                <span className="relative inline-flex items-baseline gap-3 whitespace-nowrap leading-none sm:gap-4">
                   <button
                     type="button"
                     onClick={() => setHeroMode((prev) => (prev === "execute" ? "educate" : "execute"))}
@@ -228,7 +224,7 @@ const Hero = ({ activeTab, onTabChange }: HeroProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

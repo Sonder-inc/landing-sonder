@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { URLS } from '@/lib/constants';
+import { URLS, ASSETS } from '@/lib/constants';
+import { Container } from '@/components/ui/section';
 
 const FinalCtaSection = () => {
   return (
@@ -7,14 +8,14 @@ const FinalCtaSection = () => {
       id="book-demo"
       className="relative overflow-hidden bg-[#121212] py-20 md:py-24 lg:py-28"
       style={{
-        backgroundImage: `url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/76e46daf-1e92-4ae7-a2aa-5014bf218bb7-asidehq-com/assets/images/bg-pattern-arrow-18.svg')`,
+        backgroundImage: `url('${ASSETS.BG_PATTERN_ARROW}')`,
         backgroundSize: 'auto',
         backgroundPosition: 'center',
         backgroundRepeat: 'repeat',
       }}
     >
-      <div className="container relative z-10">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 px-6 text-center md:px-0">
+      <Container className="relative z-10">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
           <h3 className="font-display text-4xl font-medium leading-tight tracking-tighter text-text-primary md:text-5xl">
             Finding bugs at terminal velocity
           </h3>
@@ -30,7 +31,7 @@ const FinalCtaSection = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

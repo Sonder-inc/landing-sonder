@@ -1,5 +1,20 @@
 import { cn } from "@/lib/utils";
 
+/** Reusable container wrapper with consistent max-width and padding */
+export function Container({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("mx-auto max-w-7xl px-6 md:px-8", className)}>
+      {children}
+    </div>
+  );
+}
+
 interface SectionProps {
   children: React.ReactNode;
   className?: string;
@@ -19,14 +34,7 @@ export function Section({
   return (
     <section id={id} className={cn("py-12 md:py-20", className)}>
       {container ? (
-        <div
-          className={cn(
-            "container mx-auto max-w-7xl px-6",
-            containerClassName
-          )}
-        >
-          {children}
-        </div>
+        <Container className={containerClassName}>{children}</Container>
       ) : (
         children
       )}
