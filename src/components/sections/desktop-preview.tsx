@@ -1,14 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { TerminalWindow, WebAppWindow } from "./terminal-window";
+import {
+  CommandLineWindow,
+  ProjectManagerWindow,
+  SlackWindow,
+  TerminalWindow,
+  WebAppWindow,
+} from "./terminal-window";
 import { useState, useEffect } from "react";
 
 interface DesktopPreviewProps {
-  activeTab?: "terminal" | "web";
+  activeView?: "terminal" | "web" | "cli" | "slack" | "pm";
 }
 
-const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
+const DesktopPreview = ({ activeView = "terminal" }: DesktopPreviewProps) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -35,7 +41,7 @@ const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
 
   return (
     <div
-      className="relative h-[480px] select-none overflow-hidden bg-cover bg-top md:h-[520px] md:rounded-xl"
+      className="relative h-[480px] w-full select-none overflow-hidden bg-cover bg-top md:h-[520px] md:rounded-xl lg:h-auto lg:aspect-square"
       style={{
         backgroundImage:
           "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Generated-Image-December-01-2025-5_45PM-1764629164040.png?width=8000&height=8000&resize=contain')",
@@ -44,7 +50,7 @@ const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
       {/* NOTE: The original menu bar is likely translucent. Added background to match visual design. */}
       <div className="absolute left-0 top-0 z-10 flex h-9 w-full items-center bg-[#D4C5A9]/50 px-2 text-sm font-medium text-black backdrop-blur-sm">
         <div className="flex items-center">
-          <span className="flex-shrink-0 px-3">
+          <span className="flex-shrink-0 px-2">
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/76e46daf-1e92-4ae7-a2aa-5014bf218bb7-asidehq-com/assets/svgs/menubar-apple_2b5d6514-2.svg"
               alt="Mac"
@@ -52,12 +58,11 @@ const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
               height={17}
             />
           </span>
-          <span className="px-3 font-bold">Sonder</span>
-          <span className="px-3">File</span>
-          <span className="px-3">Edit</span>
-          <span className="px-3">View</span>
-          <span className="px-3">Window</span>
-          <span className="px-3">Help</span>
+          <span className="px-2 font-bold">Sonder</span>
+          <span className="px-2">File</span>
+          <span className="px-2">Edit</span>
+          {/* Keep the menubar compact so it doesn't collide with the time on smaller desktop widths */}
+          <span className="hidden px-2 xl:inline">View</span>
         </div>
         <div className="grow"></div>
         <div className="hidden items-center md:flex">
@@ -97,9 +102,13 @@ const DesktopPreview = ({ activeTab = "terminal" }: DesktopPreviewProps) => {
         </div>
       </div>
 
-      {/* Window floating in front */}
-      <div className="absolute inset-x-1 top-14 z-20 flex justify-center md:inset-x-auto md:left-1/2 md:block md:-translate-x-1/2">
-        {activeTab === "terminal" ? <TerminalWindow /> : <WebAppWindow />}
+      {/* Window floating in front - centered vertically and horizontally */}
+      <div className="absolute inset-0 top-9 z-20 flex items-center justify-center">
+        {activeView === "terminal" && <TerminalWindow />}
+        {activeView === "web" && <WebAppWindow />}
+        {activeView === "cli" && <CommandLineWindow />}
+        {activeView === "slack" && <SlackWindow />}
+        {activeView === "pm" && <ProjectManagerWindow />}
       </div>
     </div>
   );

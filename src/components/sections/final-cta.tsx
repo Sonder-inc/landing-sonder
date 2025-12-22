@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { URLS } from '@/lib/constants';
 
 const FinalCtaSection = () => {
   return (
@@ -22,7 +23,7 @@ const FinalCtaSection = () => {
           </p>
           <div className="mt-5">
             <Link
-              href="https://cal.com/trysonder"
+              href={URLS.BOOK_DEMO}
               className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-[#4A9EFF] px-6 text-base font-medium text-white shadow-xs transition-colors hover:bg-[#4A9EFF]/90"
             >
               Book a demo

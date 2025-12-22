@@ -213,3 +213,142 @@ export function WebAppWindow() {
     </div>
   );
 }
+
+export function CommandLineWindow() {
+  return (
+    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f0f] font-mono text-sm shadow-2xl ring-1 ring-white/10">
+      {/* Title Bar */}
+      <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+          <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+          <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+        </div>
+        <span className="text-xs tracking-widest text-white/50">COMMAND LINE</span>
+      </div>
+
+      <div className="flex h-[360px] items-center justify-center p-10">
+        <div className="w-full max-w-[520px] rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
+          <div className="space-y-1 text-[13px] leading-relaxed text-white/80">
+            <div>
+              <span className="text-white/60">run_sonder_fix()</span> {"{"}
+            </div>
+            <div className="pl-4">
+              <span className="text-white/60">echo</span> <span className="text-white/60">"Processing "</span>
+              <span className="text-orange-300">$1</span>
+            </div>
+            <div className="pl-4">
+              <span className="text-orange-300">sonder</span> <span className="text-white/60">--task</span>{" "}
+              <span className="text-white/60">"Fix the bug in "</span>
+              <span className="text-orange-300">$1</span>
+            </div>
+            <div>{"}"}</div>
+            <div className="pt-4 text-white/60">
+              for bug in bugs:
+              <div className="pl-4">run_sonder_fix(bug)</div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex justify-end">
+            <button
+              type="button"
+              className="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-black shadow-[0_0_0_1px_rgba(0,0,0,0.35)]"
+            >
+              RUN
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function SlackWindow() {
+  return (
+    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
+      {/* Title Bar */}
+      <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+          <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+          <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+        </div>
+        <span className="text-xs tracking-widest text-white/50">SLACK / TEAMS</span>
+      </div>
+
+      <div className="flex h-[360px] items-center justify-center p-10">
+        <div className="w-full max-w-[560px] overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <div className="border-b border-white/10 px-4 py-3 font-mono text-xs text-white/50">
+            #project <span className="ml-1 text-white/30">▾</span>
+          </div>
+          <div className="space-y-3 px-4 py-4">
+            <div className="rounded-xl bg-black/20 p-3">
+              <div className="font-mono text-[11px] text-white/60">You</div>
+              <div className="mt-1 font-mono text-[13px] text-white/80">
+                Run a quick scan on <span className="text-orange-300">api.sonder.dev</span> and file the top 3 issues.
+                <span className="text-orange-300"> @sonder</span>
+              </div>
+            </div>
+            <div className="rounded-xl bg-black/20 p-3">
+              <div className="font-mono text-[11px] text-white/60">sonder</div>
+              <div className="mt-1 font-mono text-[13px] text-white/80">
+                On it. I’ll scan endpoints + auth flows and draft tickets with reproduction steps.
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 border-t border-white/10 px-4 py-3">
+            <div className="h-8 flex-1 rounded-lg bg-black/20" />
+            <div className="h-8 w-8 rounded-lg bg-white/10" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ProjectManagerWindow() {
+  return (
+    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
+      {/* Title Bar */}
+      <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+          <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+          <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+        </div>
+        <span className="text-xs tracking-widest text-white/50">PROJECT MANAGER</span>
+      </div>
+
+      <div className="flex h-[360px] items-center justify-center p-10">
+        <div className="w-full max-w-[420px] space-y-3">
+          <div className="flex items-center justify-center gap-3 text-white/60">
+            <div className="h-3 w-3 rounded-full ring-2 ring-white/30" />
+            <span className="font-mono text-xs">Todo</span>
+            <span className="font-mono text-xs text-white/30">3</span>
+          </div>
+
+          {[
+            { key: "PRO-14", title: "Implement Light Mode" },
+            { key: "PRO-18", title: "Optimize Image Rendering Pipeline" },
+            { key: "PRO-21", title: "Implement Dark Mode" },
+          ].map((t) => (
+            <div
+              key={t.key}
+              className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <div className="font-mono text-[11px] tracking-wider text-white/40">{t.key}</div>
+                <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+              </div>
+              <div className="mt-2 flex items-center gap-3">
+                <div className="h-3.5 w-3.5 rounded-full ring-1 ring-white/20" />
+                <div className="text-sm text-white/75">{t.title}</div>
+              </div>
+              <div className="mt-3 h-1 w-10 rounded bg-white/10" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

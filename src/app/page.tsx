@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Navigation from "@/components/sections/navigation";
 import Hero from "@/components/sections/hero";
-import DesktopPreview from "@/components/sections/desktop-preview";
+import TrustedBy from "@/components/sections/trusted-by";
+import ProductPreviewScroller from "@/components/sections/product-preview-scroller";
 import BeforeCallSection from "@/components/sections/before-call";
 import DuringHack from "@/components/sections/during-call";
 import AfterHackSection from "@/components/sections/after-call";
@@ -19,9 +20,8 @@ export default function Home() {
       <Navigation />
       <main className="min-h-screen bg-background">
         <Hero activeTab={activeTab} onTabChange={setActiveTab} />
-        <div className="mx-auto max-w-7xl px-0 pb-12 md:px-6 md:pb-20">
-          <DesktopPreview activeTab={activeTab} />
-        </div>
+        <TrustedBy />
+        <ProductPreviewScroller />
         <BeforeCallSection />
         <DuringHack />
         <div className="container mx-auto max-w-7xl px-6 py-12 md:py-20">

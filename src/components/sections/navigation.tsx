@@ -1,95 +1,231 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-
+import { ChevronDown, ChevronRight, Command, Globe, Kanban, Menu, Slack, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose } from
-"@/components/ui/sheet";
+  SheetClose,
+} from "@/components/ui/sheet";
+import { URLS } from "@/lib/constants";
 
 const navLinks = [
-{ href: "#prepare", label: "Features", external: false },
-{ href: "#book-demo", label: "Enterprise", external: false },
-{ href: "https://discord.gg/3PpkxCGWeV", label: "Community", external: true },
-{ href: "https://github.com/Sonder-inc", label: "Resources", external: true }];
+  { href: "#enterprise", label: "ENTERPRISE" },
+  { href: "#pricing", label: "PRICING" },
+  { href: "#news", label: "NEWS" },
+  { href: "#company", label: "COMPANY" },
+  { href: URLS.GITHUB_REPO, label: "DOCS", external: true },
+];
 
+const productMenuItems = [
+  {
+    href: "#terminal",
+    title: "Terminal / IDE",
+    description: "Hack where you code",
+    Icon: Terminal,
+  },
+  {
+    href: "#slack",
+    title: "Slack / Teams",
+    description: "Instant incident resolution",
+    Icon: Slack,
+  },
+  {
+    href: "#web",
+    title: "Web",
+    description: "Native delegation interface",
+    Icon: Globe,
+  },
+  {
+    href: "#project-manager",
+    title: "Project Manager",
+    description: "Assign tickets to AI",
+    Icon: Kanban,
+  },
+  {
+    href: "#cli",
+    title: "CLI",
+    description: "Automation across the SDLC",
+    Icon: Command,
+  },
+] as const;
 
-const AsideLogo = () => {
+const Wordmark = () => {
   return (
-    <a href="/" className="flex items-center gap-2" aria-label="Sonder Home">
-            <span className="text-xl font-semibold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Sonder</span>
-        </a>);
-
+    <a
+      href="/"
+      aria-label="Sonder Home"
+      className="text-[18px] font-semibold tracking-tight text-white"
+      style={{ fontFamily: "'Playfair Display', serif" }}
+    >
+      Sonder
+    </a>
+  );
 };
+
+function ProductMegaMenu() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <HoverCard open={open} onOpenChange={setOpen} openDelay={75} closeDelay={100}>
+      <HoverCardTrigger asChild>
+        <button
+          type="button"
+          className="group flex items-center gap-1 text-[13px] font-medium tracking-wide transition-colors"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          <span className={open ? "text-white" : "text-[#8a8a8a] group-hover:text-white"}>
+            PRODUCT
+          </span>
+          <ChevronDown
+            className={[
+              "h-3 w-3 text-[#8a8a8a] transition-transform duration-200 group-hover:text-white",
+              open ? "rotate-180 text-white" : "",
+            ].join(" ")}
+            aria-hidden="true"
+          />
+        </button>
+      </HoverCardTrigger>
+      <HoverCardContent
+        align="center"
+        side="bottom"
+        sideOffset={8}
+        className="w-[480px] max-w-[calc(100vw-2rem)] rounded-xl border border-white/10 bg-black/70 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_56px_rgba(0,0,0,0.85)] backdrop-blur-xl"
+      >
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+          {productMenuItems.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              className="group flex items-start gap-2 rounded-lg p-1 transition-colors hover:bg-white/5"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/90">
+                <item.Icon className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[15px] font-medium leading-[1.1] text-white">
+                  {item.title}
+                </div>
+                <div className="mt-px text-[11px] leading-[1.15] text-white/45">
+                  {item.description}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}
 
 export default function Navigation() {
   return (
     <>
-      <header className="fixed top-0 left-0 z-50 w-full border-b border-transparent bg-background px-6">
-        <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-2">
-          <div className="flex flex-1 items-center justify-start">
-            <AsideLogo />
-          </div>
-          
-          <div className="hidden gap-1 md:flex md:justify-center !w-[396px] !h-9">
-            {navLinks.map((link) =>
-            <a
-              key={link.href}
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 px-4 py-2 hover:bg-accent/50 hover:text-accent-foreground text-muted-foreground !w-[90px] !h-full">
-
-                {link.label}
-              </a>
-            )}
+      <header className="fixed left-0 top-0 z-50 w-full bg-[#0a0a0a] border-b border-white/5">
+        <nav className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-6">
+          {/* Left side - Wordmark */}
+          <div className="flex items-center">
+            <Wordmark />
           </div>
 
-          <div className="hidden flex-1 items-center justify-end gap-1 md:flex">
-             <a
-              href="https://cal.com/trysonder"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all bg-white text-black shadow-xs hover:bg-white/90 h-9 px-4 py-2">
+          {/* Right side (desktop) - Tabs + Actions */}
+          <div className="hidden items-center gap-8 lg:flex">
+            <div className="flex items-center gap-6">
+              <ProductMegaMenu />
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  className="group flex items-center gap-1 text-[13px] font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
 
-              <span>Book a demo</span>
-            </a>
+            <div className="flex items-center gap-3">
+              <Button
+                asChild
+                className="h-9 rounded-sm border border-white/20 bg-[#f5f5f5] px-5 text-[13px] font-medium tracking-wide text-black hover:bg-white"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                <a href={URLS.APP}>LOG IN</a>
+              </Button>
+              <Button
+                asChild
+                className="h-9 rounded-sm border border-white/20 bg-[#1a1a1a] px-5 text-[13px] font-medium tracking-wide text-white hover:bg-[#252525]"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                <a href={URLS.BOOK_DEMO}>CONTACT SALES</a>
+              </Button>
+            </div>
           </div>
 
-          <div className="flex md:hidden">
+          {/* Mobile menu button (right side on mobile) */}
+          <div className="flex lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 active:bg-white/20">
-                  <Menu className="h-6 w-6" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/10 active:bg-white/20"
+                >
+                  <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background border-l-border w-[300px] sm:w-[540px] p-0">
-                <div className="p-6 border-b border-border">
-                  <AsideLogo />
+              <SheetContent
+                side="right"
+                className="w-[280px] border-l-white/10 bg-[#0a0a0a] p-0"
+              >
+                <div className="border-b border-white/10 px-4 py-4">
+                  <Wordmark />
                 </div>
-                <div className="flex flex-col gap-4 p-6">
-                  {navLinks.map((link) =>
-                  <SheetClose asChild key={link.href}>
+                <div className="flex flex-col gap-1 p-4">
+                  <SheetClose asChild>
+                    <a
+                      href="#features"
+                      className="flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
+                      style={{ fontFamily: "var(--font-mono)" }}
+                    >
+                      PRODUCT <ChevronRight className="h-3 w-3" />
+                    </a>
+                  </SheetClose>
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.href}>
                       <a
-                      href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      className="text-lg font-medium text-muted-foreground hover:text-foreground">
-
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="flex items-center gap-2 px-3 py-3 text-sm font-medium tracking-wide text-[#8a8a8a] transition-colors hover:text-white"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
                         {link.label}
                       </a>
                     </SheetClose>
-                  )}
+                  ))}
                 </div>
-                <div className="absolute bottom-8 left-6 right-6">
-                  <Button asChild className="w-full rounded-full bg-white h-12 text-base text-black hover:bg-white/90">
-                    <a href="https://cal.com/trysonder">
-                      Book a demo
-                    </a>
+                <div className="absolute bottom-6 left-4 right-4 flex flex-col gap-3">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-11 w-full border-white/20 bg-transparent text-sm font-medium tracking-wide text-white hover:bg-white/10"
+                    style={{ fontFamily: "var(--font-mono)" }}
+                  >
+                    <a href={URLS.APP}>LOG IN</a>
+                  </Button>
+                  <Button
+                    asChild
+                    className="h-11 w-full bg-[#1a1a1a] text-sm font-medium tracking-wide text-white hover:bg-[#252525] border border-white/20"
+                    style={{ fontFamily: "var(--font-mono)" }}
+                  >
+                    <a href={URLS.BOOK_DEMO}>CONTACT SALES</a>
                   </Button>
                 </div>
               </SheetContent>
@@ -98,6 +234,6 @@ export default function Navigation() {
         </nav>
       </header>
       <div className="h-14" />
-    </>);
-
+    </>
+  );
 }

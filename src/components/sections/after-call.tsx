@@ -1,4 +1,61 @@
-import { GitPullRequest, Bug, Shield, Bell, CheckCircle2, Clock, FileCode2, AlertCircle } from "lucide-react";
+import { GitPullRequest, CheckCircle2, Clock, FileCode2, AlertCircle } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section";
+import { StatusBadge } from "@/components/ui/status-badge";
+
+const PrItem = ({
+  title,
+  description,
+  additions,
+  deletions,
+  time,
+  status,
+}: {
+  title: string;
+  description: string;
+  additions: number;
+  deletions: number;
+  time: string;
+  status: "ready" | "review";
+}) => (
+  <div className="rounded-lg bg-black/50 p-4">
+    <div className="flex items-start justify-between">
+      <div>
+        <p className="text-sm font-medium text-white">{title}</p>
+        <p className="mt-1 text-xs text-white/50">{description}</p>
+      </div>
+      <StatusBadge variant={status === "ready" ? "success" : "warning"}>
+        {status === "ready" ? "Ready" : "Review"}
+      </StatusBadge>
+    </div>
+    <div className="mt-3 flex items-center gap-4 text-xs text-white/50">
+      <span className="flex items-center gap-1">
+        <FileCode2 className="h-3 w-3" /> +{additions} -{deletions}
+      </span>
+      <span className="flex items-center gap-1">
+        <Clock className="h-3 w-3" /> {time}
+      </span>
+    </div>
+  </div>
+);
+
+const CveItem = ({
+  id,
+  dependency,
+  severity,
+}: {
+  id: string;
+  dependency: string;
+  severity: "critical" | "high";
+}) => (
+  <div className="flex items-center gap-3 rounded-lg bg-black/30 p-3">
+    <AlertCircle className={`h-4 w-4 ${severity === "critical" ? "text-red-400" : "text-orange-400"}`} />
+    <div className="flex-1">
+      <p className="text-xs font-medium text-white">{id}</p>
+      <p className="text-[10px] text-white/50">{dependency}</p>
+    </div>
+    <CheckCircle2 className="h-4 w-4 text-green-400" />
+  </div>
+);
 
 const AfterHackSection = () => {
   return (
@@ -10,10 +67,12 @@ const AfterHackSection = () => {
       className="rounded-3xl border-t border-t-white/20"
     >
       <div className="mx-auto max-w-7xl px-6 py-10 md:py-20">
-        <div className="mb-4 flex items-center justify-between border-b border-b-white/10 pb-4 text-xs font-medium uppercase text-white/50">
-          <span>[03] After the hack</span>
-          <span>/ Remediation</span>
-        </div>
+        <SectionHeader
+          number="03"
+          title="After the hack"
+          subtitle="Remediation"
+          variant="minimal"
+        />
         <div className="grid grid-cols-1 items-start gap-x-16 gap-y-12 md:grid-cols-2">
           <div className="md:col-start-1">
             <div className="sticky top-28">
@@ -37,45 +96,30 @@ const AfterHackSection = () => {
                   <span className="text-sm font-medium text-white">Pull Requests</span>
                 </div>
                 <div className="space-y-3">
-                  <div className="rounded-lg bg-black/50 p-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-white">fix: sanitize SQL input in search endpoint</p>
-                        <p className="mt-1 text-xs text-white/50">Fixes SQL injection vulnerability in /api/search</p>
-                      </div>
-                      <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400">Ready</span>
-                    </div>
-                    <div className="mt-3 flex items-center gap-4 text-xs text-white/50">
-                      <span className="flex items-center gap-1"><FileCode2 className="h-3 w-3" /> +24 -8</span>
-                      <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 2m ago</span>
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-black/50 p-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-white">fix: add CSRF token validation</p>
-                        <p className="mt-1 text-xs text-white/50">Prevents cross-site request forgery attacks</p>
-                      </div>
-                      <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400">Ready</span>
-                    </div>
-                    <div className="mt-3 flex items-center gap-4 text-xs text-white/50">
-                      <span className="flex items-center gap-1"><FileCode2 className="h-3 w-3" /> +52 -3</span>
-                      <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 5m ago</span>
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-black/50 p-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-white">fix: escape user content in templates</p>
-                        <p className="mt-1 text-xs text-white/50">Resolves stored XSS vulnerability</p>
-                      </div>
-                      <span className="rounded-full bg-yellow-500/20 px-2 py-0.5 text-[10px] font-medium text-yellow-400">Review</span>
-                    </div>
-                    <div className="mt-3 flex items-center gap-4 text-xs text-white/50">
-                      <span className="flex items-center gap-1"><FileCode2 className="h-3 w-3" /> +18 -12</span>
-                      <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8m ago</span>
-                    </div>
-                  </div>
+                  <PrItem
+                    title="fix: sanitize SQL input in search endpoint"
+                    description="Fixes SQL injection vulnerability in /api/search"
+                    additions={24}
+                    deletions={8}
+                    time="2m ago"
+                    status="ready"
+                  />
+                  <PrItem
+                    title="fix: add CSRF token validation"
+                    description="Prevents cross-site request forgery attacks"
+                    additions={52}
+                    deletions={3}
+                    time="5m ago"
+                    status="ready"
+                  />
+                  <PrItem
+                    title="fix: escape user content in templates"
+                    description="Resolves stored XSS vulnerability"
+                    additions={18}
+                    deletions={12}
+                    time="8m ago"
+                    status="review"
+                  />
                 </div>
               </div>
             </div>
@@ -95,22 +139,16 @@ const AfterHackSection = () => {
                 Sonder monitors new vulnerabilities 24/7. When a CVE drops that affects your stack, a PR is already waiting.
               </p>
               <div className="mt-6 space-y-2">
-                <div className="flex items-center gap-3 rounded-lg bg-black/30 p-3">
-                  <AlertCircle className="h-4 w-4 text-red-400" />
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-white">CVE-2024-XXXX detected</p>
-                    <p className="text-[10px] text-white/50">lodash &lt; 4.17.21</p>
-                  </div>
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
-                </div>
-                <div className="flex items-center gap-3 rounded-lg bg-black/30 p-3">
-                  <AlertCircle className="h-4 w-4 text-orange-400" />
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-white">CVE-2024-YYYY patched</p>
-                    <p className="text-[10px] text-white/50">express &lt; 4.18.2</p>
-                  </div>
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
-                </div>
+                <CveItem
+                  id="CVE-2024-XXXX detected"
+                  dependency="lodash < 4.17.21"
+                  severity="critical"
+                />
+                <CveItem
+                  id="CVE-2024-YYYY patched"
+                  dependency="express < 4.18.2"
+                  severity="high"
+                />
               </div>
             </div>
           </div>
