@@ -15,8 +15,6 @@ import { URLS } from "@/lib/constants";
 const navLinks = [
   { href: "#enterprise", label: "ENTERPRISE" },
   { href: "#pricing", label: "PRICING" },
-  { href: "#news", label: "NEWS" },
-  { href: "#company", label: "COMPANY" },
   { href: URLS.GITHUB_REPO, label: "DOCS", external: true },
 ];
 

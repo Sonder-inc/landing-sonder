@@ -6,6 +6,7 @@ import { URLS, INSTALL_COMMAND } from "@/lib/constants";
 import { Container } from "@/components/ui/section";
 import { useLandingMode } from "@/lib/landing-mode";
 import { landingCopy } from "@/lib/landing-copy";
+import { LiquidMetal } from "@/components/ui/liquid-metal";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
@@ -92,14 +93,25 @@ const Hero = () => {
                   {/* Switch (visual only; click handled by overlay button) */}
                   <span
                     aria-hidden="true"
-                    className="relative z-10 pointer-events-none inline-block h-[1ex] w-[2.2ex] flex-shrink-0 rounded-full bg-neutral-900/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.55)] ring-1 ring-neutral-800"
+                    className="relative z-10 pointer-events-none inline-flex h-[0.7em] w-[1.4em] items-center rounded-full bg-neutral-950 shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_2px_4px_rgba(0,0,0,0.3)] ring-1 ring-white/10"
                   >
                     <span
-                      className={`absolute left-[0.1ex] top-1/2 h-[0.8ex] w-[0.8ex] -translate-y-1/2 rounded-full bg-neutral-200/80 shadow-[0_6px_18px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out ${
-                        mode === "educate" ? "translate-x-[1.2ex]" : "translate-x-0"
+                      className={`relative flex h-[0.55em] w-[0.55em] items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                        mode === "educate" ? "translate-x-[0.75em]" : "translate-x-[0.075em]"
                       }`}
-                    />
-                    <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+                    >
+                      {/* Liquid Metal Border Layer */}
+                      <LiquidMetal className="absolute inset-0 rounded-full overflow-hidden">
+                        {/* Thumb Inner Face */}
+                        <div className="absolute inset-[1.5px] flex items-center justify-center rounded-full bg-neutral-900 shadow-[0_1px_2px_rgba(0,0,0,0.5)] z-20">
+                          <ArrowRight 
+                            className={`h-[0.3em] w-[0.3em] text-neutral-400 stroke-[2.5] transition-transform duration-300 ${
+                              mode === "execute" ? "rotate-180" : "rotate-0"
+                            }`}
+                          />
+                        </div>
+                      </LiquidMetal>
+                    </span>
                   </span>
 
                   <span
@@ -177,9 +189,9 @@ const Hero = () => {
                 ) : (
                   <>
                     <div className="flex flex-1 items-center px-4 py-4 font-mono text-sm">
-                      <span className="text-orange-400">&gt;</span>
+                      <span className="text-[#6B9CFF]">&gt;</span>
                       <span className="text-neutral-600">&nbsp;</span>
-                      <span className="text-orange-400">curl</span>
+                      <span className="text-[#6B9CFF]">curl</span>
                       <span className="text-neutral-500">&nbsp;-fsSL&nbsp;</span>
                       <span className="text-white">{URLS.INSTALL_SCRIPT}</span>
                       <span className="text-neutral-500">&nbsp;|&nbsp;</span>

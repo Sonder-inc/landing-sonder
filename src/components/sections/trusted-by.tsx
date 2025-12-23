@@ -138,7 +138,7 @@ const TrustedBy = () => {
           {/* Left side - Label */}
           <div className="flex-shrink-0 px-6">
             <div className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-orange-500" />
+              <span className="h-2 w-2 rounded-full bg-[#6B9CFF]" />
               <span className="whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 {copy.trustedBy.label}
               </span>

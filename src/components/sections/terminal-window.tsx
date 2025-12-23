@@ -244,12 +244,12 @@ export function CommandLineWindow() {
             </div>
             <div className="pl-4">
               <span className="text-white/60">echo</span> <span className="text-white/60">"Processing "</span>
-              <span className="text-orange-300">$1</span>
+              <span className="text-[#6B9CFF]">$1</span>
             </div>
             <div className="pl-4">
-              <span className="text-orange-300">sonder</span> <span className="text-white/60">--task</span>{" "}
+              <span className="text-[#6B9CFF]">sonder</span> <span className="text-white/60">--task</span>{" "}
               <span className="text-white/60">"Fix the bug in "</span>
-              <span className="text-orange-300">$1</span>
+              <span className="text-[#6B9CFF]">$1</span>
             </div>
             <div>{"}"}</div>
             <div className="pt-4 text-white/60">

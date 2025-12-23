@@ -50,7 +50,7 @@
   /* ===========================================
    * Chart Colors
    * =========================================== */
-  --color-chart-1: #e67e22;
+  --color-chart-1: #6B9CFF;
   --color-chart-2: #2d8659;
   --color-chart-3: #1e3a5f;
   --color-chart-4: #f1c40f;
@@ -80,6 +80,12 @@
    * =========================================== */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-spin-slow: spin 3s linear infinite;
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 
   @keyframes accordion-down {
     from { height: 0; }
@@ -95,7 +101,7 @@
    * =========================================== */
   --color-glass-base: rgba(0, 0, 0, 0.15);
   --color-macos-chrome-tan: #D4C5A9;
-  --color-orange-badge: #FF6B35;
+  --color-blue-badge: #6B9CFF;
 
   /* ===========================================
    * Typography
@@ -134,6 +140,25 @@
 
   .font-display-serif {
     font-family: 'Playfair Display', serif;
+  }
+
+  .bg-liquid-metal {
+    background: conic-gradient(
+      from 0deg,
+      #ffffff 0deg,
+      #00d1ff 30deg,
+      #ff00c7 60deg,
+      #ffae00 90deg,
+      #00ff85 120deg,
+      #ffffff 150deg,
+      #00d1ff 180deg,
+      #ff00c7 210deg,
+      #ffae00 240deg,
+      #00ff85 270deg,
+      #ffffff 300deg,
+      #00d1ff 330deg,
+      #ffffff 360deg
+    );
   }
 }
 

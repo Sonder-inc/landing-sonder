@@ -136,7 +136,7 @@ export default function ProductPreviewScroller() {
                             key={s.id}
                             className={`h-2 w-2 rounded-full transition-colors duration-300 ${
                               isActive
-                                ? "bg-orange-400"
+                                ? "bg-[#6B9CFF]"
                                 : "bg-muted-foreground/30"
                             }`}
                           />
@@ -155,7 +155,7 @@ export default function ProductPreviewScroller() {
                           onClick={() => goToStep(idx)}
                           className={`block w-full rounded-md px-1 py-1 text-left transition-colors ${
                             isActive
-                              ? "text-orange-400"
+                              ? "text-[#6B9CFF]"
                               : "hover:text-muted-foreground"
                           }`}
                           aria-current={isActive ? "step" : undefined}
@@ -174,7 +174,7 @@ export default function ProductPreviewScroller() {
                 <div className="rounded-2xl border border-border/60 bg-card/40 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-2">
-                      <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-orange-400" />
+                      <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-[#6B9CFF]" />
                       <div className="font-mono text-xs tracking-widest text-muted-foreground/70">
                         {active.number} - {active.label}
                       </div>

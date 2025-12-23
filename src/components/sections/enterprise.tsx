@@ -58,7 +58,7 @@ const EnterpriseSection = () => {
             {/* Column 1: Intro */}
             <div className="flex-[1.2] p-8 lg:p-12">
               <div className="mb-16 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-[#FF6B35]" />
+                <div className="h-2 w-2 rounded-full bg-[#6B9CFF]" />
                 <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-black/40">
                   Enterprise
                 </span>
