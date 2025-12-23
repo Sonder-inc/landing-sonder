@@ -103,7 +103,7 @@ const DesktopPreview = ({ activeView = "terminal" }: DesktopPreviewProps) => {
       </div>
 
       {/* Window floating in front - centered vertically and horizontally */}
-      <div className="absolute inset-0 top-9 z-20 flex items-center justify-center">
+      <div className="absolute inset-0 top-9 z-20 flex items-center justify-center p-4 md:p-8">
         {activeView === "terminal" && <TerminalWindow />}
         {activeView === "web" && <WebAppWindow />}
         {activeView === "cli" && <CommandLineWindow />}

@@ -17,7 +17,7 @@ export function TerminalWindow() {
   const copy = landingCopy[mode];
 
   return (
-    <div className="w-[560px] max-w-[90vw] overflow-hidden rounded-xl bg-[#1a1a1a] font-mono text-sm shadow-2xl">
+    <div className="w-[480px] max-w-[85vw] overflow-hidden rounded-xl bg-[#1a1a1a] font-mono text-sm shadow-2xl">
       {/* Title Bar */}
       <div className="flex items-center gap-2 bg-[#2a2a2a] px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
@@ -88,7 +88,7 @@ export function WebAppWindow() {
   const copy = landingCopy[mode];
 
   return (
-    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#2d2d2d] font-sans text-sm shadow-2xl">
+    <div className="w-[620px] max-w-[85vw] overflow-hidden rounded-xl bg-[#2d2d2d] font-sans text-sm shadow-2xl">
       {/* Title Bar */}
       <div className="flex items-center gap-2 bg-[#1a1a1a] px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
@@ -225,7 +225,7 @@ export function WebAppWindow() {
 
 export function CommandLineWindow() {
   return (
-    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f0f] font-mono text-sm shadow-2xl ring-1 ring-white/10">
+    <div className="w-[620px] max-w-[85vw] overflow-hidden rounded-xl bg-[#0f0f0f] font-mono text-sm shadow-2xl ring-1 ring-white/10">
       {/* Title Bar */}
       <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
         <div className="flex items-center gap-2">
@@ -277,7 +277,7 @@ export function SlackWindow() {
   const copy = landingCopy[mode];
 
   return (
-    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
+    <div className="w-[620px] max-w-[85vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
       {/* Title Bar */}
       <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
         <div className="flex items-center gap-2">
@@ -319,7 +319,7 @@ export function SlackWindow() {
 
 export function ProjectManagerWindow() {
   return (
-    <div className="w-[700px] max-w-[95vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
+    <div className="w-[620px] max-w-[85vw] overflow-hidden rounded-xl bg-[#0f0f10] font-sans text-sm shadow-2xl ring-1 ring-white/10">
       {/* Title Bar */}
       <div className="flex items-center justify-between bg-[#151515] px-4 py-3">
         <div className="flex items-center gap-2">

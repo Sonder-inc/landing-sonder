@@ -27,7 +27,7 @@ const FinalCtaSection = () => {
             <div className="mb-12 flex items-center font-mono text-[10px] tracking-[0.1em] text-gray-400 uppercase">
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#4A9EFF]" />
-                <span>Build with us</span>
+                <span>Hack with us</span>
               </div>
             </div>
             <div className="flex flex-col items-center gap-5 text-center">
@@ -46,18 +46,18 @@ const FinalCtaSection = () => {
                 </svg>
               </div>
               <h3 className="w-full text-left font-display text-4xl font-medium leading-tight tracking-tighter text-gray-900 md:text-5xl">
-                {copy.finalCta.headline}
-              </h3>
+            {copy.finalCta.headline}
+          </h3>
               <p className="w-full text-left text-lg text-gray-600">
-                {copy.finalCta.subhead}
-              </p>
+            {copy.finalCta.subhead}
+          </p>
               <div className="mt-8 flex w-full justify-start">
-                <Link
+            <Link
                   href={URLS.APP}
                   className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#4A9EFF] px-8 text-lg font-medium text-white transition-colors hover:bg-[#4A9EFF]/90"
-                >
+            >
                   Start hacking
-                </Link>
+            </Link>
               </div>
             </div>
           </div>
