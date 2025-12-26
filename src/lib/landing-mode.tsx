@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { analytics } from "./posthog";
 
 export type LandingMode = "execute" | "educate";
 
@@ -41,7 +42,13 @@ export function LandingModeProvider({
 
   const setMode = React.useCallback(
     (next: LandingMode) => {
-      setModeState(next);
+      setModeState((prev) => {
+        // Track mode switch if actually changing
+        if (prev !== next) {
+          analytics.modeSwitch(prev, next);
+        }
+        return next;
+      });
       if (!persist) return;
       try {
         window.localStorage.setItem(STORAGE_KEY, next);
@@ -53,8 +60,19 @@ export function LandingModeProvider({
   );
 
   const toggleMode = React.useCallback(() => {
-    setMode((prev) => (prev === "execute" ? "educate" : "execute"));
-  }, [setMode]);
+    setModeState((prev) => {
+      const next = prev === "execute" ? "educate" : "execute";
+      analytics.modeSwitch(prev, next);
+      if (persist) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, next);
+        } catch {
+          // ignore storage errors
+        }
+      }
+      return next;
+    });
+  }, [persist]);
 
   const value = React.useMemo<LandingModeContextValue>(
     () => ({ mode, setMode, toggleMode }),

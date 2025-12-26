@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/section";
 import { useLandingMode } from "@/lib/landing-mode";
 import { landingCopy } from "@/lib/landing-copy";
 import { LiquidMetal } from "@/components/ui/liquid-metal";
+import { useAnalytics } from "@/lib/posthog";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
@@ -15,11 +16,13 @@ const Hero = () => {
   const [urlError, setUrlError] = useState(false);
   const { mode, toggleMode } = useLandingMode();
   const copy = landingCopy[mode];
+  const { ctaClick, buttonClick, track, signupStart } = useAnalytics();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(INSTALL_COMMAND);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    track("install_command_copied", { method: "terminal" });
   };
 
   const isValidUrl = (urlString: string): boolean => {
@@ -35,11 +38,18 @@ const Hero = () => {
     if (urlInput.trim()) {
       if (!isValidUrl(urlInput.trim())) {
         setUrlError(true);
+        track("url_submit_error", { error: "invalid_url" });
         return;
       }
       const url = encodeURIComponent(urlInput.trim());
+      ctaClick("hero", URLS.APP);
+      signupStart("hero_url_input");
+      track("pentest_started", { method: "web", has_url: true });
       window.location.href = `${URLS.APP}?url=${url}`;
     } else {
+      ctaClick("hero", URLS.APP);
+      signupStart("hero_url_input");
+      track("pentest_started", { method: "web", has_url: false });
       window.location.href = URLS.APP;
     }
   };
@@ -61,6 +71,10 @@ const Hero = () => {
               {/* Intro pill button */}
               <a
                 href={URLS.GITHUB_REPO}
+                onClick={() => {
+                  ctaClick("hero", URLS.GITHUB_REPO);
+                  track("github_repo_clicked", { location: "hero_pill" });
+                }}
                 className="group mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary"
               >
                 <span>{copy.hero.introPill}</span>
@@ -136,7 +150,10 @@ const Hero = () => {
               {/* Tabs */}
               <div className="mb-3 flex gap-1">
                 <button
-                  onClick={() => setSelectedMode("on-web")}
+                  onClick={() => {
+                    setSelectedMode("on-web");
+                    buttonClick("install_tab_web", "hero");
+                  }}
                   className={`rounded-md px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
                     selectedMode === "on-web"
                       ? "border border-neutral-700 bg-neutral-800 text-white"
@@ -146,7 +163,10 @@ const Hero = () => {
                   Web
                 </button>
                 <button
-                  onClick={() => setSelectedMode("get-sonder")}
+                  onClick={() => {
+                    setSelectedMode("get-sonder");
+                    buttonClick("install_tab_terminal", "hero");
+                  }}
                   className={`rounded-md px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-widest transition-colors ${
                     selectedMode === "get-sonder"
                       ? "border border-neutral-700 bg-neutral-800 text-white"

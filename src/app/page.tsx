@@ -5,10 +5,12 @@ import ProductPreviewScroller from "@/components/sections/product-preview-scroll
 import EnterpriseSection from "@/components/sections/enterprise";
 import FinalCtaSection from "@/components/sections/final-cta";
 import Footer from "@/components/sections/footer";
+import { PageTracker } from "@/components/analytics";
 
 export default function Home() {
   return (
     <>
+      <PageTracker />
       <Navigation />
       <main className="min-h-screen bg-background">
         <Hero />

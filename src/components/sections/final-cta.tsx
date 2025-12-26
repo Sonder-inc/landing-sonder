@@ -5,10 +5,12 @@ import { URLS, ASSETS } from '@/lib/constants';
 import { Container } from '@/components/ui/section';
 import { useLandingMode } from "@/lib/landing-mode";
 import { landingCopy } from "@/lib/landing-copy";
+import { useAnalytics } from "@/lib/posthog";
 
 const FinalCtaSection = () => {
   const { mode } = useLandingMode();
   const copy = landingCopy[mode];
+  const { ctaClick, signupStart, track } = useAnalytics();
 
   return (
     <section
@@ -54,6 +56,11 @@ const FinalCtaSection = () => {
               <div className="mt-8 flex w-full justify-start">
             <Link
                   href={URLS.APP}
+                  onClick={() => {
+                    ctaClick("footer", URLS.APP);
+                    signupStart("final_cta");
+                    track("start_hacking_clicked", { location: "final_cta" });
+                  }}
                   className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#4A9EFF] px-8 text-lg font-medium text-white transition-colors hover:bg-[#4A9EFF]/90"
             >
                   Start hacking
